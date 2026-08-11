@@ -45,32 +45,6 @@ footer{padding:30px 0;background:var(--bg2);border-top:1px solid var(--edge);col
 .malgrin-chat-launcher[hidden]{display:none}.hidden{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(1px,1px,1px,1px)!important}
 @media(max-width:960px){.hero-grid,.about,.controls{grid-template-columns:1fr}.hero-covers{max-width:690px}.issue-grid,.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-2{grid-template-columns:1fr}.hero-copy{text-align:center}.hero-copy .cta{justify-content:center}}
 @media(max-width:700px){.brand span{display:none}.nav{align-items:flex-start;padding:.7rem 0}.nav .btn-outline{padding:.55rem .72rem}.hero{min-height:70svh}.hero-grid{padding:48px 0}.hero-covers{gap:7px}.hero-covers img{border-width:3px}.issue-grid,.grid-3{grid-template-columns:1fr}.notice{grid-template-columns:auto 1fr}.notice .btn-outline{grid-column:1/-1}.malgrin-chat{right:9px;bottom:9px}.malgrin-chat-launcher{min-height:68px;padding-right:13px}.malgrin-chat-launcher img{width:52px;height:52px}.malgrin-chat-panel{width:calc(100vw - 18px);height:min(620px,calc(100svh - 18px));border-radius:20px}section.content{padding:58px 0}}
-
-/* HELL'S TALES FEATURE */
-.hells-tales-ad{position:relative;overflow:hidden;isolation:isolate;min-height:520px;display:grid;place-items:center;border:1px solid rgba(255,105,35,.26);border-radius:28px;background:radial-gradient(circle at 50% 105%,rgba(255,111,0,.34),transparent 34%),radial-gradient(circle at 50% 72%,rgba(156,0,0,.22),transparent 48%),linear-gradient(180deg,#070202 0%,#120303 54%,#030101 100%);box-shadow:inset 0 -70px 100px rgba(130,15,0,.16),0 28px 80px rgba(0,0,0,.48)}
-.hells-tales-ad::before{content:"";position:absolute;inset:0;z-index:-5;background:linear-gradient(90deg,rgba(0,0,0,.96),rgba(0,0,0,.3) 38%,rgba(0,0,0,.48) 64%,rgba(0,0,0,.94)),linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.08) 48%,rgba(12,0,0,.78)),url('assets/hells-tales/cover-demon.png') center 31%/cover no-repeat;filter:saturate(1.15) contrast(1.06);transform:scale(1.025)}
-.hells-tales-ad::after{content:"";position:absolute;inset:0;z-index:-4;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 5px),radial-gradient(ellipse at 50% 90%,rgba(255,78,0,.2),transparent 44%);mix-blend-mode:screen;opacity:.65}
-.hells-tales-smoke{position:absolute;inset:auto -8% -2% -8%;height:46%;z-index:-1;opacity:.65;filter:blur(18px);background:radial-gradient(ellipse at 15% 100%,rgba(165,25,0,.35),transparent 36%),radial-gradient(ellipse at 52% 100%,rgba(255,66,0,.25),transparent 40%),radial-gradient(ellipse at 84% 100%,rgba(120,10,0,.3),transparent 35%);animation:hellSmoke 6s ease-in-out infinite alternate}
-@keyframes hellSmoke{from{transform:translate3d(-1%,4%,0) scale(1)}to{transform:translate3d(1%,-2%,0) scale(1.05)}}
-.hells-tales-gate{position:relative;width:min(760px,calc(100% - 32px));margin:48px auto;padding:34px;text-align:center;border:1px solid rgba(255,120,48,.38);border-radius:24px;background:linear-gradient(180deg,rgba(13,3,3,.30),rgba(3,0,0,.42)),radial-gradient(circle at 50% 110%,rgba(255,81,0,.10),transparent 48%);box-shadow:inset 0 0 0 1px rgba(255,183,80,.06),inset 0 -18px 36px rgba(116,8,0,.09),0 0 28px rgba(105,11,0,.12);backdrop-filter:blur(2px)}
-.hells-tales-gate::before,.hells-tales-gate::after{content:"";position:absolute;top:14%;bottom:14%;width:2px;background:linear-gradient(transparent,#ff5b16,#ffb54d,#ff3c0a,transparent);box-shadow:0 0 12px #ff4b0e,0 0 30px rgba(255,57,0,.55);opacity:.75}
-.hells-tales-gate::before{left:13px}.hells-tales-gate::after{right:13px}
-.hells-tales-kicker{display:inline-block;margin-bottom:10px;color:#ffc36d;font-weight:950;letter-spacing:.22em;text-transform:uppercase;font-size:.78rem;text-shadow:0 0 18px rgba(255,70,0,.65)}
-.hells-tales-title{margin:.1rem 0 .75rem;font-family:Georgia,'Times New Roman',serif;font-size:clamp(3rem,8vw,6.8rem);line-height:.78;letter-spacing:-.055em;text-transform:uppercase;color:#fff0d3;text-shadow:0 2px 0 #7c1608,0 0 18px rgba(255,62,0,.45),0 0 42px rgba(255,46,0,.22)}
-.hells-tales-sub{max-width:620px;margin:0 auto 24px;color:#eadac9;font-size:clamp(1rem,2vw,1.18rem);text-shadow:0 3px 14px rgba(0,0,0,.9)}
-.hells-tales-portal{position:relative;display:inline-grid;place-items:center;min-width:min(100%,360px);min-height:68px;padding:16px 26px;border:1px solid rgba(255,159,74,.72);border-radius:999px;color:#fff3d1;background:linear-gradient(180deg,rgba(61,9,4,.96),rgba(18,2,1,.98));font-weight:950;letter-spacing:.08em;text-transform:uppercase;box-shadow:inset 0 0 0 1px rgba(255,208,143,.08),inset 0 -13px 30px rgba(255,64,0,.18),0 0 20px rgba(255,57,0,.22),0 18px 36px rgba(0,0,0,.44);overflow:visible;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
-.hells-tales-portal span{position:relative;z-index:4;text-shadow:0 0 12px rgba(255,105,30,.65)}
-.hells-tales-portal::before{content:"";position:absolute;inset:5px;border-radius:inherit;z-index:1;background:radial-gradient(circle at 50% 135%,rgba(255,225,130,.85) 0 6%,rgba(255,90,0,.78) 18%,rgba(110,0,0,.52) 42%,transparent 70%);opacity:.56;filter:blur(5px);animation:portalPulse 2.1s ease-in-out infinite}
-.hells-tales-portal::after{content:"";position:absolute;left:4%;right:4%;bottom:-16px;height:38px;z-index:0;border-radius:50%;background:radial-gradient(ellipse,rgba(255,93,0,.72),rgba(142,11,0,.35) 42%,transparent 72%);filter:blur(8px);transform:scaleX(.9);animation:hellLeak 1.9s ease-in-out infinite alternate}
-@keyframes portalPulse{0%,100%{opacity:.42;transform:scale(.985)}50%{opacity:.86;transform:scale(1.025)}}
-@keyframes hellLeak{from{transform:scaleX(.78) translateY(0);opacity:.5}to{transform:scaleX(1.06) translateY(-7px);opacity:.95}}
-.hells-tales-portal:hover,.hells-tales-portal:focus-visible{transform:translateY(-4px) scale(1.025);border-color:#ffc56d;box-shadow:inset 0 0 0 1px rgba(255,215,155,.16),inset 0 -18px 34px rgba(255,73,0,.28),0 0 30px rgba(255,74,0,.44),0 0 70px rgba(176,12,0,.24),0 22px 42px rgba(0,0,0,.55)}
-.hells-tales-flame{position:absolute;bottom:-7px;width:18px;height:26px;z-index:3;pointer-events:none;border-radius:46% 54% 56% 44%/64% 62% 38% 36%;background:radial-gradient(circle at 50% 70%,#ffe7a0 0 8%,#ff9b22 20%,#e74608 46%,rgba(114,9,0,.56) 68%,transparent 73%);filter:blur(.4px) drop-shadow(0 0 6px rgba(255,72,10,.75));transform-origin:50% 100%;animation:flameLick var(--flame-speed,1.35s) ease-in-out infinite;opacity:.58}
-.hells-tales-flame.f1{left:14%;--flame-speed:1.25s}.hells-tales-flame.f2{left:31%;--flame-speed:1.62s}.hells-tales-flame.f3{right:28%;--flame-speed:1.31s}.hells-tales-flame.f4{right:12%;--flame-speed:1.52s}
-@keyframes flameLick{0%,100%{height:8px;opacity:.22;transform:scaleX(.72) translateY(3px)}50%{height:27px;opacity:.72;transform:scaleX(1.05) translateY(-2px)}}
-.hells-tales-cracks{position:absolute;inset:auto 0 0;height:90px;z-index:-2;opacity:.55;background:linear-gradient(115deg,transparent 0 48%,rgba(255,76,0,.7) 49% 50%,transparent 51%) 11% 40%/120px 55px no-repeat,linear-gradient(64deg,transparent 0 48%,rgba(255,133,0,.65) 49% 50%,transparent 51%) 39% 60%/150px 60px no-repeat,linear-gradient(120deg,transparent 0 48%,rgba(255,63,0,.6) 49% 50%,transparent 51%) 75% 42%/140px 65px no-repeat,linear-gradient(70deg,transparent 0 48%,rgba(255,148,0,.55) 49% 50%,transparent 51%) 91% 55%/110px 58px no-repeat;filter:drop-shadow(0 0 7px rgba(255,64,0,.78))}
-@media(max-width:700px){.hells-tales-ad{min-height:500px;border-radius:20px}.hells-tales-gate{padding:28px 20px;margin:34px auto}.hells-tales-title{font-size:clamp(2.6rem,15vw,4.8rem)}.hells-tales-portal{min-width:0;width:100%}}
-
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.magic-layer{display:none}.reveal{opacity:1;transform:none}}
 </style>
 </head>
@@ -105,31 +79,6 @@ footer{padding:30px 0;background:var(--bg2);border-top:1px solid var(--edge);col
 <section class="content" id="announcements">
  <div class="container"><div class="glass notice reveal"><div class="notice-badge">NEW</div><div><h3>Bad Wizard Publishing is opening the longbox.</h3><p class="muted">Issue profiles, creator notes, previews, production updates, and release announcements will appear here as the line grows.</p></div><a class="btn-outline" href="#newsletter">Get updates</a></div></div>
 </section>
-
-<section class="content" id="hells-tales-feature">
- <audio id="hellsTalesAudio" preload="auto" loop>
-  <source src="assets/audio/hell-good.mp3" type="audio/mpeg">
- </audio>
- <div class="container">
-  <div class="hells-tales-ad reveal">
-   <div class="hells-tales-smoke" aria-hidden="true"></div>
-   <div class="hells-tales-cracks" aria-hidden="true"></div>
-   <div class="hells-tales-gate">
-    <span class="hells-tales-kicker">From Bad Wizard Publishing</span>
-    <h2 class="hells-tales-title">Hell's Tales</h2>
-    <p class="hells-tales-sub">An infernal anthology of temptation, judgment, hypocrisy, and the uncomfortable possibility that Hell's most infamous resident may not be the villain history made him out to be.</p>
-    <a class="hells-tales-portal" href="hells-tales-index.html" aria-label="Enter Hell's Tales">
-     <span>Open the Gates of Hell</span>
-     <i class="hells-tales-flame f1" aria-hidden="true"></i>
-     <i class="hells-tales-flame f2" aria-hidden="true"></i>
-     <i class="hells-tales-flame f3" aria-hidden="true"></i>
-     <i class="hells-tales-flame f4" aria-hidden="true"></i>
-    </a>
-   </div>
-  </div>
- </div>
-</section>
-
 <section class="content" id="issues">
  <div class="container">
   <div class="section-head reveal"><div><h2>Issues</h2><p class="lead">Six first-wave covers from the Bad Wizard Publishing shelf. Search by title, tone, or genre.</p></div></div>
@@ -224,75 +173,6 @@ function bindEmailForm(formId,statusId,destination,copy){
 }
 bindEmailForm('newsletterForm','newsletterStatus','reading-list@badwizard.games',{pending:'Joining the reader list…',success:'You are on the Bad Wizard Publishing reader list.',failure:'The reader-list service is temporarily unavailable.'});
 bindEmailForm('contactForm','contactStatus','publish@badwizard.games',{pending:'Sending your message…',success:'Your message was delivered to publish@badwizard.games.',failure:'The publishing contact service is temporarily unavailable.'});
-
-
-
-
-/* Hell's Tales MP3 viewport playback */
-(() => {
-  const section = document.getElementById('hells-tales-feature');
-  const audio = document.getElementById('hellsTalesAudio');
-  if (!section || !audio) return;
-
-  audio.loop = true;
-  audio.volume = 0.72;
-
-  let inView = false;
-  let userActivated = false;
-
-  async function playIfAllowed() {
-    if (!inView || !userActivated) return;
-    try {
-      await audio.play();
-    } catch (error) {
-      // Browsers may block playback until the visitor interacts with the page.
-      console.debug("Hell's Tales audio is waiting for user interaction.", error);
-    }
-  }
-
-  function stopAudio() {
-    audio.pause();
-    audio.currentTime = 0;
-  }
-
-  const observer = new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      if (entry.target !== section) continue;
-      inView = entry.isIntersecting && entry.intersectionRatio >= 0.22;
-
-      if (inView) {
-        playIfAllowed();
-      } else {
-        stopAudio();
-      }
-    }
-  }, {
-    threshold: [0, 0.22, 0.5, 0.85]
-  });
-
-  observer.observe(section);
-
-  async function activateAudio() {
-    userActivated = true;
-    await playIfAllowed();
-  }
-
-  // Required by browser autoplay policies.
-  window.addEventListener('pointerdown', activateAudio, { once: true });
-  window.addEventListener('keydown', activateAudio, { once: true });
-
-  // Stop immediately if the visitor leaves or hides the page.
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      audio.pause();
-    } else if (inView) {
-      playIfAllowed();
-    }
-  });
-
-  window.addEventListener('pagehide', () => audio.pause());
-})();
-
 </script>
 </body>
 </html>
