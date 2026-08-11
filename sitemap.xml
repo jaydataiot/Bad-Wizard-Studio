@@ -24,5 +24,11 @@
     <priority>1.0</priority>
   </url>
 
+  <url>
+    <loc>https://badwizard.studio/malgrin-oracle-interface/index.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>9.0</priority>
+  </url>
+
   <!-- Add additional same-domain pages as they are published. -->
 </urlset>
