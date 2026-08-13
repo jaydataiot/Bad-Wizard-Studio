@@ -887,6 +887,143 @@ box-shadow:0 10px 25px rgba(0,0,0,.35)}
 .oracle-note{margin-top:1rem;padding:1rem;border-left:4px solid #B78D48;background:rgba(255,255,255,.04)}
 @media(max-width:900px){.oracle-card{grid-template-columns:1fr}}
 
+
+/* =========================================================
+   MOBILE HERO PARCHMENT — compact handheld treatment
+   Keeps Malgrin's workshop artwork visible behind the scroll.
+========================================================= */
+@media (max-width: 720px) {
+  .hero {
+    min-height: 88svh;
+  }
+
+  .hero-inner {
+    min-height: 88svh;
+    padding: 5.25rem .35rem .8rem;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .hero-copy {
+    width: min(228px, 60vw);
+    max-height: 31svh;
+    margin: 0 .1rem 0 auto;
+    padding: .82rem .72rem .72rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #7B5A33 rgba(91,47,16,.10);
+    transform: rotate(.25deg);
+    animation: none;
+
+    background:
+      radial-gradient(circle at 18% 16%, rgba(255,255,255,.20), transparent 24%),
+      radial-gradient(circle at 82% 88%, rgba(91,47,16,.13), transparent 30%),
+      repeating-linear-gradient(0deg, rgba(82,44,18,.02) 0 1px, transparent 1px 5px),
+      linear-gradient(
+        145deg,
+        rgba(234,212,158,.92) 0%,
+        rgba(214,183,119,.90) 56%,
+        rgba(184,137,75,.90) 100%
+      );
+
+    box-shadow:
+      0 12px 25px rgba(0,0,0,.42),
+      inset 0 0 0 1px rgba(255,245,210,.30),
+      inset 0 0 24px rgba(83,39,11,.14);
+  }
+
+  .hero-copy::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .hero-copy::-webkit-scrollbar-track {
+    background: rgba(91,47,16,.08);
+  }
+
+  .hero-copy::-webkit-scrollbar-thumb {
+    background: #7B5A33;
+    border-radius: 999px;
+  }
+
+  .hero-copy::before {
+    width: 10px;
+    height: 10px;
+    top: .25rem;
+  }
+
+  .hero-copy::after {
+    width: 31px;
+    height: 31px;
+    right: .42rem;
+    bottom: .42rem;
+    font-size: .5rem;
+  }
+
+  .hero-copy .eyebrow {
+    font-size: .53rem;
+    letter-spacing: .085em;
+    line-height: 1.25;
+  }
+
+  .hero-copy h1 {
+    margin: .16rem 0 .4rem;
+    font-size: 1.28rem;
+    line-height: .98;
+  }
+
+  .hero-copy p {
+    max-width: none;
+    margin: 0;
+    font-size: .67rem;
+    line-height: 1.34;
+  }
+
+  .hero-actions {
+    gap: .3rem;
+    margin-top: .55rem;
+    padding-right: 1.75rem;
+  }
+
+  .hero-actions .btn {
+    min-height: 31px;
+    padding: .38rem .48rem;
+    font-size: .62rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-copy {
+    width: min(205px, 56vw);
+    max-height: 28svh;
+    padding: .72rem .62rem .66rem;
+  }
+
+  .hero-copy h1 {
+    font-size: 1.13rem;
+  }
+
+  .hero-copy p {
+    font-size: .62rem;
+  }
+
+  .hero-copy .eyebrow {
+    font-size: .49rem;
+  }
+
+  .hero-actions .btn {
+    font-size: .58rem;
+    min-height: 29px;
+  }
+}
+
+@media (max-width: 370px) {
+  .hero-copy {
+    width: 54vw;
+    max-height: 26svh;
+  }
+}
+
 </style>
 </head>
 <body>
