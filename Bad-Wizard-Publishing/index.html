@@ -228,69 +228,106 @@ bindEmailForm('contactForm','contactStatus','publish@badwizard.games',{pending:'
 
 
 
-/* Hell's Tales MP3 viewport playback */
+/* Hell's Tales MP3 — mobile-safe playback */
 (() => {
   const section = document.getElementById('hells-tales-feature');
   const audio = document.getElementById('hellsTalesAudio');
+  const portal = section ? section.querySelector('.hells-tales-portal') : null;
   if (!section || !audio) return;
 
   audio.loop = true;
   audio.volume = 0.72;
+  audio.preload = 'auto';
 
   let inView = false;
-  let userActivated = false;
+  let unlocked = false;
+  let started = false;
 
-  async function playIfAllowed() {
-    if (!inView || !userActivated) return;
-    try {
-      await audio.play();
-    } catch (error) {
-      // Browsers may block playback until the visitor interacts with the page.
-      console.debug("Hell's Tales audio is waiting for user interaction.", error);
+  function pauseAudio(reset = false) {
+    audio.pause();
+    if (reset) {
+      try { audio.currentTime = 0; } catch (_) {}
     }
   }
 
-  function stopAudio() {
-    audio.pause();
-    audio.currentTime = 0;
+  async function resumeAudio() {
+    if (!unlocked || !inView) return;
+    try {
+      await audio.play();
+    } catch (error) {
+      console.debug("Hell's Tales audio requires another tap on this device.", error);
+    }
   }
+
+  /*
+    iOS Safari requires play() to be called synchronously from a real user
+    gesture. The first tap/touch INSIDE this section unlocks and starts audio.
+  */
+  function unlockAndPlay(event) {
+    if (!inView) return;
+
+    unlocked = true;
+    audio.muted = false;
+    audio.volume = 0.72;
+
+    if (!started) {
+      try { audio.currentTime = 0; } catch (_) {}
+      started = true;
+    }
+
+    const result = audio.play();
+    if (result && typeof result.catch === 'function') {
+      result.catch(error => {
+        console.debug("Hell's Tales audio could not start yet.", error);
+      });
+    }
+  }
+
+  /* touchstart helps older iOS Safari; pointerdown covers modern mobile browsers. */
+  section.addEventListener('touchstart', unlockAndPlay, { passive: true });
+  section.addEventListener('pointerdown', unlockAndPlay);
+
+  /* Keyboard accessibility for desktop/tablet keyboards. */
+  section.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') unlockAndPlay(event);
+  });
 
   const observer = new IntersectionObserver(entries => {
     for (const entry of entries) {
       if (entry.target !== section) continue;
-      inView = entry.isIntersecting && entry.intersectionRatio >= 0.22;
 
-      if (inView) {
-        playIfAllowed();
-      } else {
-        stopAudio();
+      inView = entry.isIntersecting && entry.intersectionRatio >= 0.12;
+
+      if (!inView) {
+        pauseAudio(false);
+      } else if (unlocked) {
+        resumeAudio();
       }
     }
   }, {
-    threshold: [0, 0.22, 0.5, 0.85]
+    threshold: [0, 0.12, 0.3, 0.6]
   });
 
   observer.observe(section);
 
-  async function activateAudio() {
-    userActivated = true;
-    await playIfAllowed();
-  }
-
-  // Required by browser autoplay policies.
-  window.addEventListener('pointerdown', activateAudio, { once: true });
-  window.addEventListener('keydown', activateAudio, { once: true });
-
-  // Stop immediately if the visitor leaves or hides the page.
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-      audio.pause();
-    } else if (inView) {
-      playIfAllowed();
+      pauseAudio(false);
+    } else if (inView && unlocked) {
+      resumeAudio();
     }
   });
 
-  window.addEventListener('pagehide', () => audio.pause());
+  window.addEventListener('pagehide', () => pauseAudio(false));
+
+  /*
+    If the visitor taps the Hell's Tales button, force one last synchronous
+    play attempt before navigation. This also acts as a reliable mobile unlock.
+  */
+  if (portal) {
+    portal.addEventListener('touchstart', unlockAndPlay, { passive: true });
+    portal.addEventListener('pointerdown', unlockAndPlay);
+  }
 })();
 
 </script>
