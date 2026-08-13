@@ -888,139 +888,732 @@ box-shadow:0 10px 25px rgba(0,0,0,.35)}
 @media(max-width:900px){.oracle-card{grid-template-columns:1fr}}
 
 
+
 /* =========================================================
-   MOBILE HERO PARCHMENT — compact handheld treatment
-   Keeps Malgrin's workshop artwork visible behind the scroll.
+   MOBILE HERO PARCHMENT — preserve the workshop artwork
 ========================================================= */
-@media (max-width: 720px) {
-  .hero {
-    min-height: 88svh;
+@media (max-width:720px){
+  .hero{
+    min-height:88svh;
+    background:#100a06;
   }
-
-  .hero-inner {
-    min-height: 88svh;
-    padding: 5.25rem .35rem .8rem;
-    align-items: flex-end;
-    justify-content: flex-end;
+  .hero-inner{
+    min-height:88svh;
+    padding:5.5rem .15rem 1rem;
+    align-items:flex-end;
+    justify-content:flex-end;
   }
-
-  .hero-copy {
-    width: min(228px, 60vw);
-    max-height: 31svh;
-    margin: 0 .1rem 0 auto;
-    padding: .82rem .72rem .72rem;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
-    scrollbar-color: #7B5A33 rgba(91,47,16,.10);
-    transform: rotate(.25deg);
-    animation: none;
-
-    background:
-      radial-gradient(circle at 18% 16%, rgba(255,255,255,.20), transparent 24%),
-      radial-gradient(circle at 82% 88%, rgba(91,47,16,.13), transparent 30%),
-      repeating-linear-gradient(0deg, rgba(82,44,18,.02) 0 1px, transparent 1px 5px),
-      linear-gradient(
-        145deg,
-        rgba(234,212,158,.92) 0%,
-        rgba(214,183,119,.90) 56%,
-        rgba(184,137,75,.90) 100%
-      );
-
-    box-shadow:
-      0 12px 25px rgba(0,0,0,.42),
-      inset 0 0 0 1px rgba(255,245,210,.30),
-      inset 0 0 24px rgba(83,39,11,.14);
+  .hero-copy{
+    width:min(270px,72vw);
+    max-height:43svh;
+    margin:0 .15rem 0 auto;
+    padding:1.05rem .9rem .95rem;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+    scrollbar-color:#7B5A33 rgba(91,47,16,.12);
+    clip-path:polygon(2% 1%,18% 2.5%,34% .7%,50% 2%,67% .8%,84% 2.6%,98% 1%,99% 17%,97.5% 34%,99% 51%,97.5% 69%,99% 86%,97% 99%,82% 97.5%,65% 99%,49% 97.7%,32% 99%,16% 97%,1% 99%,2.5% 82%,1% 66%,2.5% 49%,1% 31%,2% 16%);
+    box-shadow:0 14px 32px rgba(0,0,0,.5),inset 0 0 26px rgba(83,39,11,.17);
   }
+  .hero-copy::-webkit-scrollbar{width:6px}
+  .hero-copy::-webkit-scrollbar-thumb{background:#7B5A33;border-radius:999px}
+  .hero-copy::before{width:12px;height:12px;top:.32rem}
+  .hero-copy::after{width:38px;height:38px;right:.55rem;bottom:.55rem;font-size:.58rem}
+  .hero-copy .eyebrow{font-size:.59rem;letter-spacing:.1em}
+  .hero-copy h1{font-size:1.62rem;line-height:1;margin:.2rem 0 .55rem}
+  .hero-copy p{font-size:.76rem;line-height:1.38;max-width:none}
+  .hero-actions{gap:.4rem;margin-top:.7rem;padding-right:2.15rem}
+  .hero-actions .btn{min-height:36px;padding:.48rem .6rem;font-size:.72rem}
+}
+@media (max-width:430px){
+  .hero-copy{width:min(245px,68vw);max-height:39svh;padding:.9rem .78rem .82rem}
+  .hero-copy h1{font-size:1.42rem}
+  .hero-copy p{font-size:.71rem}
+}
 
-  .hero-copy::-webkit-scrollbar {
-    width: 5px;
+
+/* =========================================================
+   HELL'S TALES — THE GATE
+   Dormant until the warning sign is touched.
+========================================================= */
+.hells-tales-section{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:850px;
+  display:grid;
+  align-items:center;
+  padding:5rem 0;
+  border-top:1px solid rgba(111,44,25,.45);
+  border-bottom:1px solid rgba(111,44,25,.45);
+  background:
+    radial-gradient(circle at 50% 55%,rgba(92,15,4,.13),transparent 38rem),
+    linear-gradient(#090605,#050303);
+}
+.hells-tales-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-4;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(105,20,5,.12),transparent 30%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0 1px,transparent 1px 64px),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.014) 0 1px,transparent 1px 42px),
+    #080504;
+}
+.hells-tales-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:20;
+  pointer-events:none;
+  opacity:.22;
+  background:radial-gradient(ellipse at 50% 55%,transparent 0 28%,rgba(0,0,0,.35) 68%,rgba(0,0,0,.85) 100%);
+}
+.hell-gate-stage{
+  width:min(1000px,calc(100% - 2rem));
+  margin:auto;
+  position:relative;
+  perspective:1400px;
+}
+.hell-gate-arch{
+  position:relative;
+  min-height:690px;
+  padding:56px 54px 42px;
+  overflow:hidden;
+  border:14px solid #2b2724;
+  border-bottom-width:20px;
+  border-radius:48% 48% 15px 15px / 26% 26% 10px 10px;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(140,23,5,.18),transparent 36%),
+    linear-gradient(90deg,#171310,#29231e 12%,#120e0c 20%,#211b17 80%,#17120f 88%,#090706);
+  box-shadow:
+    0 32px 70px rgba(0,0,0,.68),
+    inset 0 0 0 4px #080605,
+    inset 0 0 65px rgba(0,0,0,.9);
+}
+.hell-gate-arch::before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  z-index:12;
+  pointer-events:none;
+  border:3px solid rgba(88,72,59,.7);
+  border-radius:47% 47% 8px 8px / 24% 24% 8px 8px;
+  box-shadow:inset 0 0 24px #000;
+}
+.hell-behind{
+  position:absolute;
+  inset:36px 38px 28px;
+  z-index:0;
+  overflow:hidden;
+  border-radius:44% 44% 5px 5px / 22% 22% 5px 5px;
+  background:#130201;
+  box-shadow:inset 0 0 65px #000;
+}
+.hell-behind::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(18,0,0,.62),rgba(8,0,0,.28)),
+    url("assets/hells-tales/cover.png") center 25% / cover no-repeat;
+  filter:saturate(.68) brightness(.38) contrast(1.15);
+  transform:scale(1.035);
+  transition:filter 1s ease,transform 2s cubic-bezier(.2,.8,.2,1);
+}
+.hell-behind::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.22;
+  background:
+    radial-gradient(circle at 42% 53%,rgba(255,40,0,.75),transparent 5%),
+    radial-gradient(circle at 62% 47%,rgba(255,45,0,.55),transparent 7%),
+    linear-gradient(0deg,rgba(120,8,1,.38),transparent 52%);
+  transition:opacity .7s ease;
+}
+.hell-gate-glow{
+  position:absolute;
+  inset:36px 38px 28px;
+  z-index:1;
+  pointer-events:none;
+  opacity:.08;
+  border-radius:44% 44% 5px 5px / 22% 22% 5px 5px;
+  background:
+    radial-gradient(ellipse at 50% 78%,rgba(255,78,5,.9),transparent 46%),
+    linear-gradient(90deg,transparent 43%,rgba(255,86,9,.6) 49%,transparent 56%);
+  filter:blur(13px);
+  transition:opacity .55s ease;
+}
+.hell-gate-doors{
+  position:absolute;
+  inset:36px 38px 28px;
+  z-index:4;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-radius:44% 44% 5px 5px / 22% 22% 5px 5px;
+  overflow:hidden;
+  transform-style:preserve-3d;
+}
+.hell-door{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.045),transparent 7%,transparent 93%,rgba(255,255,255,.035)),
+    repeating-linear-gradient(90deg,#181818 0 16px,#3b3530 17px 21px,#121212 22px 48px);
+  border:4px solid #090807;
+  box-shadow:inset 0 0 30px #000;
+  transition:transform .75s cubic-bezier(.2,.7,.2,1),filter .5s ease;
+}
+.hell-door-left{
+  transform-origin:left center;
+  border-right:7px solid #080706;
+}
+.hell-door-right{
+  transform-origin:right center;
+  border-left:7px solid #080706;
+}
+.hell-door::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 72px,#090807 73px 91px,transparent 92px 146px),
+    linear-gradient(90deg,transparent 48%,rgba(170,157,139,.13) 50%,transparent 52%);
+  opacity:.92;
+}
+.hell-door::after{
+  content:"";
+  position:absolute;
+  top:9%;
+  bottom:9%;
+  width:13px;
+  background:linear-gradient(90deg,#070605,#51483f,#090807);
+  box-shadow:0 0 0 3px #090807,0 0 18px #000;
+}
+.hell-door-left::after{right:20px}
+.hell-door-right::after{left:20px}
+.hell-gate-spikes{
+  position:absolute;
+  left:38px;
+  right:38px;
+  bottom:28px;
+  z-index:7;
+  height:55px;
+  display:flex;
+  justify-content:space-around;
+  align-items:flex-end;
+  pointer-events:none;
+}
+.hell-gate-spikes i{
+  width:18px;
+  height:54px;
+  background:linear-gradient(90deg,#151310,#5a5045,#100e0c);
+  clip-path:polygon(50% 0,100% 35%,78% 100%,22% 100%,0 35%);
+  filter:drop-shadow(0 3px 4px #000);
+}
+.hell-chain{
+  position:absolute;
+  z-index:8;
+  left:13%;
+  right:13%;
+  top:51%;
+  height:22px;
+  transform:rotate(-7deg);
+  border-radius:999px;
+  background:
+    repeating-linear-gradient(90deg,#100f0e 0 10px,#62564a 11px 17px,#161412 18px 32px);
+  border:3px solid #090807;
+  box-shadow:0 5px 8px #000,0 0 0 2px #373029;
+  transform-origin:center;
+}
+.hell-chain.second{
+  top:60%;
+  transform:rotate(8deg);
+}
+.hell-padlock{
+  position:absolute;
+  z-index:10;
+  left:50%;
+  top:53%;
+  width:64px;
+  height:72px;
+  transform:translate(-50%,-50%);
+  border:5px solid #171310;
+  border-radius:8px;
+  background:linear-gradient(145deg,#6b5437,#24180f 62%,#8c6c42);
+  box-shadow:0 9px 16px #000,inset 0 0 0 2px rgba(226,187,110,.18);
+}
+.hell-padlock::before{
+  content:"";
+  position:absolute;
+  left:10px;
+  right:10px;
+  top:-41px;
+  height:45px;
+  border:8px solid #302820;
+  border-bottom:0;
+  border-radius:30px 30px 0 0;
+}
+.hell-padlock::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:25px;
+  width:8px;
+  height:19px;
+  transform:translateX(-50%);
+  background:#090604;
+  clip-path:polygon(50% 0,100% 36%,72% 100%,28% 100%,0 36%);
+}
+.hell-warning-wrap{
+  position:absolute;
+  z-index:14;
+  left:50%;
+  top:70%;
+  transform:translate(-50%,-50%);
+  width:min(440px,78%);
+  text-align:center;
+  perspective:700px;
+}
+.hell-warning-sign{
+  position:relative;
+  width:100%;
+  min-height:132px;
+  padding:1.15rem 2rem 1rem;
+  border:3px solid #392313;
+  color:#390b07;
+  cursor:pointer;
+  font-family:"Courier New",monospace;
+  font-size:clamp(1.6rem,5vw,2.75rem);
+  line-height:1;
+  font-weight:1000;
+  letter-spacing:.045em;
+  text-transform:uppercase;
+  transform:rotate(-2.3deg);
+  background:
+    radial-gradient(circle at 16% 23%,rgba(255,238,189,.22),transparent 15%),
+    repeating-linear-gradient(0deg,rgba(82,45,18,.05) 0 1px,transparent 1px 5px),
+    linear-gradient(100deg,#9c7645,#d0ad70 46%,#8b6237);
+  clip-path:polygon(1% 5%,16% 2%,31% 5%,49% 1%,67% 4%,83% 1%,99% 5%,97% 25%,100% 49%,97% 71%,99% 96%,83% 98%,67% 95%,49% 99%,32% 96%,15% 99%,2% 95%,4% 73%,1% 49%,4% 27%);
+  box-shadow:0 22px 36px rgba(0,0,0,.78),inset 0 0 0 3px rgba(59,30,10,.25),inset 0 0 30px rgba(74,34,8,.36);
+  transition:transform .2s ease,filter .2s ease,box-shadow .3s ease;
+}
+.hell-warning-sign::before,.hell-warning-sign::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  transform:translateY(-50%);
+  background:radial-gradient(circle at 35% 30%,#d4b26c 0 10%,#49321e 40%,#120b07 100%);
+  box-shadow:0 2px 3px #000;
+}
+.hell-warning-sign::before{left:18px}
+.hell-warning-sign::after{right:18px}
+.hell-warning-sign:hover,.hell-warning-sign:focus-visible{
+  transform:rotate(.5deg) scale(1.035);
+  filter:brightness(1.08);
+}
+.hell-warning-sub{
+  display:block;
+  margin-top:.45rem;
+  color:#5f2617;
+  font-size:.69rem;
+  line-height:1.2;
+  letter-spacing:.15em;
+}
+.hell-gate-copy{
+  position:relative;
+  z-index:15;
+  width:min(720px,92%);
+  margin:-2rem auto 0;
+  padding:1.15rem 1.5rem;
+  text-align:center;
+  text-shadow:0 3px 14px #000;
+}
+.hell-gate-copy .eyebrow{color:#c76b49}
+.hell-gate-copy h2{
+  margin:.15rem 0 .55rem;
+  color:#ead3bb;
+  font-size:clamp(3rem,8vw,6.4rem);
+  line-height:.86;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+}
+.hell-gate-copy p{
+  max-width:58ch;
+  margin:.45rem auto;
+  color:#c8b3a1;
+}
+.hells-tales-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  margin-top:.9rem;
+  padding:.78rem 1.25rem;
+  border:1px solid rgba(177,82,48,.75);
+  border-radius:999px;
+  color:#f4dfc7;
+  background:linear-gradient(135deg,#52140e,#8b2f2a 58%,#2a0907);
+  font-weight:900;
+  box-shadow:0 12px 28px rgba(0,0,0,.5);
+  transition:.2s ease;
+}
+.hells-tales-link:hover{transform:translateY(-2px);filter:brightness(1.12)}
+.hell-fire{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-25px;
+  height:155px;
+  z-index:11;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(72%);
+  transition:opacity .5s ease,transform .7s cubic-bezier(.2,.85,.25,1);
+}
+.hell-fire::before{
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:42px;
+  background:radial-gradient(ellipse at 50% 100%,rgba(255,215,70,.78),transparent 34%),linear-gradient(0deg,rgba(111,8,2,.98),rgba(226,54,10,.68) 38%,transparent);
+  filter:blur(7px);
+  box-shadow:0 -32px 85px rgba(255,55,8,.33);
+}
+.hell-flame{
+  position:absolute;
+  bottom:8px;
+  width:44px;
+  height:70px;
+  border-radius:55% 45% 58% 42% / 72% 70% 30% 28%;
+  background:linear-gradient(0deg,#ffc124 0%,#f0430a 43%,rgba(126,5,1,.9) 75%,transparent 100%);
+  transform-origin:50% 100%;
+  animation:hellFlame 1.15s ease-in-out infinite alternate;
+  filter:blur(1px);
+  mix-blend-mode:screen;
+  opacity:.9;
+}
+.hell-cracks{
+  position:absolute;
+  inset:0;
+  z-index:13;
+  pointer-events:none;
+  opacity:0;
+  background:
+    linear-gradient(111deg,transparent 47%,rgba(255,92,18,.75) 48.5%,rgba(84,5,1,.9) 49.2%,transparent 50%) 14% 73% / 190px 270px no-repeat,
+    linear-gradient(68deg,transparent 48%,rgba(255,76,13,.7) 48.5%,rgba(73,5,1,.85) 49.2%,transparent 50%) 85% 66% / 220px 300px no-repeat;
+  filter:drop-shadow(0 0 12px rgba(255,58,10,.75));
+  transition:opacity .7s ease;
+}
+.hell-pressure{
+  position:absolute;
+  inset:36px 38px 28px;
+  z-index:3;
+  pointer-events:none;
+  opacity:0;
+  border-radius:44% 44% 5px 5px / 22% 22% 5px 5px;
+  background:
+    radial-gradient(circle at 25% 60%,rgba(255,50,4,.72),transparent 4%),
+    radial-gradient(circle at 70% 43%,rgba(255,60,5,.55),transparent 5%),
+    radial-gradient(circle at 52% 75%,rgba(255,90,8,.4),transparent 8%);
+  filter:blur(12px);
+}
+.hells-tales-section.inferno-active .hell-behind::before{
+  filter:saturate(1.5) brightness(.7) contrast(1.15);
+  transform:scale(1.085);
+}
+.hells-tales-section.inferno-active .hell-behind::after{opacity:.82}
+.hells-tales-section.inferno-active .hell-gate-glow{opacity:.82}
+.hells-tales-section.inferno-active .hell-pressure{opacity:1;animation:hellPressure .55s ease-in-out infinite alternate}
+.hells-tales-section.inferno-active .hell-fire{opacity:1;transform:translateY(0)}
+.hells-tales-section.inferno-active .hell-cracks{opacity:1}
+.hells-tales-section.inferno-active .hell-door-left{animation:gateLeftStrain .68s ease-in-out infinite alternate}
+.hells-tales-section.inferno-active .hell-door-right{animation:gateRightStrain .63s ease-in-out infinite alternate}
+.hells-tales-section.inferno-active .hell-chain{animation:chainRattle .23s linear infinite}
+.hells-tales-section.inferno-active .hell-chain.second{animation-delay:-.1s}
+.hells-tales-section.inferno-active .hell-padlock{animation:lockHammer .45s ease-in-out infinite alternate}
+.hells-tales-section.inferno-active .hell-warning-sign{
+  animation:warningRattle .2s linear 0s 8;
+  filter:sepia(.35) brightness(.84);
+}
+.hells-tales-section.inferno-active .hell-gate-arch{
+  animation:gateBreach 3.7s ease-in-out infinite;
+}
+@keyframes hellFlame{
+  0%{transform:scaleY(.8) skewX(-4deg) rotate(-2deg)}
+  100%{transform:scaleY(1.2) skewX(5deg) rotate(3deg)}
+}
+@keyframes gateLeftStrain{
+  0%{transform:perspective(900px) rotateY(0deg) translateX(0)}
+  100%{transform:perspective(900px) rotateY(-3.6deg) translateX(-4px)}
+}
+@keyframes gateRightStrain{
+  0%{transform:perspective(900px) rotateY(0deg) translateX(0)}
+  100%{transform:perspective(900px) rotateY(3.8deg) translateX(4px)}
+}
+@keyframes chainRattle{
+  0%,100%{margin-left:0;filter:brightness(1)}
+  25%{margin-left:-4px;filter:brightness(1.25)}
+  75%{margin-left:4px;filter:brightness(.85)}
+}
+@keyframes lockHammer{
+  from{transform:translate(-50%,-50%) rotate(-2deg)}
+  to{transform:translate(-50%,-50%) rotate(3deg) scale(1.025)}
+}
+@keyframes warningRattle{
+  0%,100%{transform:rotate(-2.3deg) translate(0)}
+  25%{transform:rotate(-1deg) translate(-4px,2px)}
+  50%{transform:rotate(0deg) translate(4px,-1px)}
+  75%{transform:rotate(-3deg) translate(-2px,-2px)}
+}
+@keyframes gateBreach{
+  0%,100%{transform:translate(0,0)}
+  6%{transform:translate(-2px,1px)}
+  8%{transform:translate(3px,-1px)}
+  10%{transform:translate(-1px,1px)}
+  12%{transform:translate(0,0)}
+}
+@keyframes hellPressure{
+  from{filter:blur(13px) brightness(.8)}
+  to{filter:blur(8px) brightness(1.35)}
+}
+@media(max-width:720px){
+  .hells-tales-section{min-height:760px;padding:3.8rem 0}
+  .hell-gate-arch{min-height:590px;padding:38px 24px 30px;border-width:9px;border-bottom-width:14px}
+  .hell-behind,.hell-gate-glow,.hell-gate-doors,.hell-pressure{inset:24px 18px 20px}
+  .hell-gate-spikes{left:18px;right:18px;bottom:20px}
+  .hell-chain{left:8%;right:8%}
+  .hell-warning-wrap{top:68%;width:min(340px,78%)}
+  .hell-warning-sign{min-height:112px;padding:1rem 1.7rem;font-size:clamp(1.3rem,8vw,2rem)}
+  .hell-gate-copy{margin:-1rem auto 0;padding:.9rem .6rem}
+  .hell-gate-copy h2{font-size:clamp(3rem,17vw,5rem)}
+  .hell-gate-copy p{font-size:.9rem}
+  .hell-fire{height:185px}
+}
+@media(max-width:430px){
+  .hell-gate-arch{min-height:545px}
+  .hell-warning-wrap{top:67%;width:82%}
+  .hell-chain{height:17px}
+  .hell-chain.second{top:61%}
+  .hell-padlock{width:52px;height:60px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hell-flame,
+  .hells-tales-section.inferno-active .hell-door-left,
+  .hells-tales-section.inferno-active .hell-door-right,
+  .hells-tales-section.inferno-active .hell-chain,
+  .hells-tales-section.inferno-active .hell-padlock,
+  .hells-tales-section.inferno-active .hell-warning-sign,
+  .hells-tales-section.inferno-active .hell-gate-arch,
+  .hells-tales-section.inferno-active .hell-pressure{
+    animation:none!important;
   }
+}
+}
 
-  .hero-copy::-webkit-scrollbar-track {
-    background: rgba(91,47,16,.08);
+
+/* =========================================================
+   HELL'S TALES — tightened gate composition + stronger fire
+========================================================= */
+
+/* Keep the copy inside the gate, above the warning sign. */
+.hell-gate-copy{
+  position:absolute;
+  z-index:15;
+  left:50%;
+  top:18%;
+  width:min(720px,82%);
+  margin:0;
+  padding:.9rem 1rem 1rem;
+  transform:translateX(-50%);
+  text-align:center;
+  text-shadow:0 3px 14px #000,0 0 22px rgba(190,35,5,.32);
+  background:
+    radial-gradient(ellipse at 50% 100%,rgba(93,8,2,.18),transparent 72%),
+    linear-gradient(180deg,rgba(5,2,1,.10),rgba(5,2,1,.28));
+  border-radius:18px;
+  pointer-events:auto;
+}
+.hell-gate-copy .eyebrow{
+  color:#e1845a;
+  text-shadow:0 2px 8px #000,0 0 12px rgba(255,67,10,.32);
+}
+.hell-gate-copy h2{
+  margin:.08rem 0 .38rem;
+  color:#f0dcc7;
+  font-size:clamp(2.7rem,7vw,5.5rem);
+  line-height:.84;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+  text-shadow:
+    0 4px 12px #000,
+    0 0 18px rgba(255,63,7,.34),
+    0 0 40px rgba(128,12,2,.24);
+}
+.hell-gate-copy p{
+  max-width:54ch;
+  margin:.3rem auto;
+  color:#dac6b6;
+  font-size:.94rem;
+  line-height:1.45;
+}
+.hells-tales-link{
+  margin-top:.62rem;
+  min-height:43px;
+  padding:.62rem 1.12rem;
+}
+
+/* Push the warning sign slightly lower to make room for the copy. */
+.hell-warning-wrap{
+  top:73%;
+}
+
+/* More visible fire glow inside the gate. */
+.hell-gate-fire{
+  background:
+    radial-gradient(ellipse at 50% 100%,rgba(255,92,9,.22),transparent 58%),
+    linear-gradient(0deg,rgba(122,9,1,.18),transparent 42%);
+}
+.hells-tales-section.inferno-active .hell-gate-fire{
+  opacity:1;
+  filter:
+    drop-shadow(0 0 14px rgba(255,95,12,.82))
+    drop-shadow(0 0 34px rgba(213,26,4,.58));
+}
+.hells-tales-section.inferno-active .hell-gate-glow{
+  opacity:1;
+  filter:blur(8px) brightness(1.55) saturate(1.15);
+  box-shadow:
+    inset 0 -78px 110px rgba(255,69,5,.36),
+    0 0 58px rgba(255,46,4,.34);
+}
+.hells-tales-section.inferno-active .hell-door{
+  filter:
+    drop-shadow(0 0 9px rgba(255,91,13,.62))
+    drop-shadow(0 0 24px rgba(174,23,3,.42));
+  box-shadow:
+    inset 0 -118px 105px rgba(167,27,4,.22),
+    inset 0 0 30px #000,
+    0 0 26px rgba(255,58,6,.30);
+}
+
+/* Slightly larger, more energetic flames coming through the gate. */
+.hell-gate-flame{
+  width:34px;
+  height:76px;
+  filter:blur(.7px) drop-shadow(0 0 8px rgba(255,89,8,.75));
+}
+@keyframes gateFlameLick{
+  0%{
+    transform:scaleY(.72) scaleX(.9) skewX(-5deg) rotate(-2deg);
+    opacity:.48;
   }
-
-  .hero-copy::-webkit-scrollbar-thumb {
-    background: #7B5A33;
-    border-radius: 999px;
+  50%{
+    transform:scaleY(1.05) scaleX(1.05) skewX(2deg) rotate(1deg);
+    opacity:.9;
   }
-
-  .hero-copy::before {
-    width: 10px;
-    height: 10px;
-    top: .25rem;
-  }
-
-  .hero-copy::after {
-    width: 31px;
-    height: 31px;
-    right: .42rem;
-    bottom: .42rem;
-    font-size: .5rem;
-  }
-
-  .hero-copy .eyebrow {
-    font-size: .53rem;
-    letter-spacing: .085em;
-    line-height: 1.25;
-  }
-
-  .hero-copy h1 {
-    margin: .16rem 0 .4rem;
-    font-size: 1.28rem;
-    line-height: .98;
-  }
-
-  .hero-copy p {
-    max-width: none;
-    margin: 0;
-    font-size: .67rem;
-    line-height: 1.34;
-  }
-
-  .hero-actions {
-    gap: .3rem;
-    margin-top: .55rem;
-    padding-right: 1.75rem;
-  }
-
-  .hero-actions .btn {
-    min-height: 31px;
-    padding: .38rem .48rem;
-    font-size: .62rem;
+  100%{
+    transform:scaleY(1.22) scaleX(.96) skewX(5deg) rotate(3deg);
+    opacity:.62;
   }
 }
 
-@media (max-width: 430px) {
-  .hero-copy {
-    width: min(205px, 56vw);
-    max-height: 28svh;
-    padding: .72rem .62rem .66rem;
-  }
+/* Intensify the lower bed: more glow and somewhat taller flare-ups. */
+.hell-fire{
+  height:126px;
+}
+.hell-fire::before{
+  height:30px;
+  background:
+    radial-gradient(ellipse at 50% 100%,rgba(255,176,50,.48),transparent 48%),
+    radial-gradient(ellipse at 50% 100%,rgba(255,73,8,.30),transparent 72%),
+    linear-gradient(0deg,rgba(103,8,2,.82),rgba(181,18,4,.18) 56%,transparent);
+  filter:blur(8px);
+  box-shadow:
+    0 -18px 46px rgba(255,57,6,.24),
+    0 -34px 78px rgba(255,38,3,.16);
+}
+.hell-ember{
+  box-shadow:
+    0 0 8px #ff6809,
+    0 0 16px rgba(205,26,3,.78),
+    0 0 24px rgba(255,54,4,.25);
+}
+.hell-bottom-flare{
+  width:26px;
+  height:52px;
+  filter:blur(.65px) drop-shadow(0 0 8px rgba(255,71,8,.68));
+}
+@keyframes hellOccasionalFlare{
+  0%,66%,100%{transform:scaleY(.05) scaleX(.65);opacity:0}
+  72%{transform:scaleY(.85) scaleX(.92) rotate(-2deg);opacity:.66}
+  78%{transform:scaleY(1.18) scaleX(1) rotate(2deg);opacity:.9}
+  85%{transform:scaleY(.56) scaleX(.86);opacity:.42}
+  91%{transform:scaleY(.05);opacity:0}
+}
 
-  .hero-copy h1 {
-    font-size: 1.13rem;
-  }
+/* Tighten overall Hell's Tales vertical footprint. */
+.hells-tales-section{
+  min-height:760px;
+  padding:3.6rem 0;
+}
+.hell-gate-arch{
+  min-height:650px;
+}
+.hell-gate-stage{
+  margin-top:.2rem;
+  margin-bottom:.2rem;
+}
 
-  .hero-copy p {
-    font-size: .62rem;
+@media(max-width:720px){
+  .hells-tales-section{
+    min-height:700px;
+    padding:2.8rem 0;
   }
-
-  .hero-copy .eyebrow {
-    font-size: .49rem;
+  .hell-gate-arch{
+    min-height:590px;
   }
-
-  .hero-actions .btn {
-    font-size: .58rem;
-    min-height: 29px;
+  .hell-gate-copy{
+    top:16%;
+    width:86%;
+    padding:.7rem .65rem;
+  }
+  .hell-gate-copy h2{
+    font-size:clamp(2.5rem,14vw,4.25rem);
+  }
+  .hell-gate-copy p{
+    font-size:.82rem;
+    line-height:1.35;
+  }
+  .hell-warning-wrap{
+    top:74%;
+  }
+  .hell-fire{
+    height:118px;
   }
 }
 
-@media (max-width: 370px) {
-  .hero-copy {
-    width: 54vw;
-    max-height: 26svh;
+@media(max-width:430px){
+  .hell-gate-copy{
+    top:14.5%;
+    width:88%;
+  }
+  .hell-gate-copy .eyebrow{
+    font-size:.58rem;
+  }
+  .hell-gate-copy h2{
+    font-size:clamp(2.3rem,15vw,3.7rem);
+  }
+  .hell-gate-copy p{
+    font-size:.76rem;
+  }
+  .hell-warning-wrap{
+    top:75%;
   }
 }
 
@@ -1191,6 +1784,51 @@ box-shadow:0 10px 25px rgba(0,0,0,.35)}
       </div>
     </section>
 
+
+
+
+    <section class="hells-tales-section" id="hells-tales" aria-labelledby="hells-tales-title">
+      <div class="hell-cracks" aria-hidden="true"></div>
+      <div class="hell-fire" id="hellFire" aria-hidden="true"></div>
+
+      <div class="hell-gate-stage">
+        <div class="hell-gate-arch" aria-label="A chained iron gate holds back Hell">
+          <div class="hell-behind" aria-hidden="true"></div>
+          <div class="hell-gate-glow" aria-hidden="true"></div>
+          <div class="hell-pressure" aria-hidden="true"></div>
+
+          <div class="hell-gate-doors" aria-hidden="true">
+            <div class="hell-door hell-door-left"></div>
+            <div class="hell-door hell-door-right"></div>
+          </div>
+
+          <div class="hell-chain" aria-hidden="true"></div>
+          <div class="hell-chain second" aria-hidden="true"></div>
+          <div class="hell-padlock" aria-hidden="true"></div>
+
+          <div class="hell-gate-spikes" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+
+          <div class="hell-gate-copy">
+          <span class="eyebrow">From Bad Wizard Publishing</span>
+          <h2 id="hells-tales-title">Hell's Tales</h2>
+          <p>Something is waiting on the other side. The chains are old. The hinges are tired. And whatever is behind them has noticed you.</p>
+          <a class="hells-tales-link" href="Bad-Wizard-Publishing/hells-tales-index.html">Enter Hell's Tales <span aria-hidden="true">→</span></a>
+        </div>
+
+          <div class="hell-warning-wrap">
+            <button class="hell-warning-sign" id="hellWarningSign" type="button" aria-controls="hells-tales" aria-pressed="false">
+              Do Not Touch!
+              <span class="hell-warning-sub">This gate is sealed for a reason.</span>
+            </button>
+          </div>
+        </div></div>
+
+      <audio id="hellsTalesAudio" preload="auto" loop>
+        <source src="Bad-Wizard-Publishing/assets/audio/hell-good.mp3" type="audio/mpeg">
+      </audio>
+    </section>
 
     <section class="manifesto">
       <div class="container reveal">
@@ -1501,5 +2139,75 @@ box-shadow:0 10px 25px rgba(0,0,0,.35)}
       });
     })();
   </script>
+
+  <script>
+    (() => {
+      const section = document.getElementById('hells-tales');
+      const sign = document.getElementById('hellWarningSign');
+      const audio = document.getElementById('hellsTalesAudio');
+      const fire = document.getElementById('hellFire');
+      if (!section || !sign || !audio || !fire) return;
+
+      // Build the flames only once; the inferno remains dormant until the sign is touched.
+      for (let i = 0; i < 24; i++) {
+        const flame = document.createElement('i');
+        flame.className = 'hell-flame';
+        flame.style.left = `${(i / 23) * 100}%`;
+        flame.style.height = `${75 + Math.random() * 110}px`;
+        flame.style.width = `${28 + Math.random() * 42}px`;
+        flame.style.animationDuration = `${.7 + Math.random() * .9}s`;
+        flame.style.animationDelay = `${-Math.random() * 1.3}s`;
+        flame.style.opacity = `${.58 + Math.random() * .4}`;
+        fire.appendChild(flame);
+      }
+
+      let awakened = false;
+      let visible = true;
+
+      const syncAudio = () => {
+        if (!awakened || !visible) {
+          audio.pause();
+          return;
+        }
+        audio.volume = .72;
+        const promise = audio.play();
+        if (promise && typeof promise.catch === 'function') {
+          promise.catch(error => console.warn("Hell's Tales audio could not start.", error));
+        }
+      };
+
+      const awakenHell = () => {
+        awakened = !awakened;
+        section.classList.toggle('inferno-active', awakened);
+        sign.setAttribute('aria-pressed', String(awakened));
+        sign.firstChild.nodeValue = awakened ? ' THE GATE IS FAILING! ' : ' Do Not Touch! ';
+        if (awakened) {
+          audio.currentTime = 0;
+          syncAudio();
+        } else {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      };
+
+      sign.addEventListener('click', awakenHell);
+
+      // Once awakened, pause the soundtrack when visitors leave the section and resume on return.
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.target !== section) return;
+          visible = entry.isIntersecting && entry.intersectionRatio > .08;
+          syncAudio();
+        });
+      }, { threshold: [0, .08, .25] });
+      observer.observe(section);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) audio.pause();
+        else syncAudio();
+      });
+    })();
+  </script>
+
 </body>
 </html>
