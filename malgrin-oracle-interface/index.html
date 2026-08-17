@@ -133,7 +133,7 @@
 <body>
   <div class="shell">
     <header>
-      <div class="brand"><img src="assets/bad-wizard-logo.png" alt="Bad Wizard Studio"><div><strong>BAD WIZARD STUDIO</strong><span>Games • Publishing • Media</span></div></div>
+      <div class="brand"><a href="../index.html"><img src="assets/bad-wizard-logo.png" alt="Bad Wizard Studio"></a><div><strong>BAD WIZARD STUDIO</strong><span>Games • Publishing • Design</span></div></div>
       <div class="header-actions">
         <div class="status" aria-live="polite"><i class="dot" id="connectionDot"></i><span id="connectionText">Awakening Oracle</span></div>
         <button class="ghost" id="newSession">New consultation</button>
@@ -181,8 +181,7 @@
     const messages = $('messages'), prompt = $('prompt'), sendButton = $('sendButton');
     let conversationId = null, busy = false, soundOn = true, recognition = null, toastTimer;
     let audioContext = null, activeVoice = null, voiceAnalyser = null, mouthFrame = 0;
-    let speechToken = 0, speechQueue = [], speechPumpActive = false, speechPumpToken = null, speechStreamOpen = false;
-    const ttsControllers = new Set();
+    let ttsController = null, speechToken = 0;
 
     const states = {
       idle: ['Malgrin is listening', 'Ask wisely. He is not endlessly patient.'],
@@ -219,9 +218,8 @@
     }
     function stopSpeech({keepState=false}={}) {
       speechToken++;
-      speechStreamOpen=false; speechQueue=[]; speechPumpActive=false; speechPumpToken=null;
-      ttsControllers.forEach(controller=>controller.abort()); ttsControllers.clear();
-      if(activeVoice) { try { activeVoice.stop(0); } catch {} activeVoice=null; }
+      if(ttsController) { ttsController.abort(); ttsController=null; }
+      if(activeVoice) { try { activeVoice.onended=null; activeVoice.stop(0); } catch {} activeVoice=null; }
       if(mouthFrame) cancelAnimationFrame(mouthFrame); mouthFrame=0;
       $('mouth').style.setProperty('--mouth-open','0');
       if(!keepState && !busy) setState('idle');
@@ -238,62 +236,24 @@
       };
       tick();
     }
-    function beginSpeechStream() {
-      if(!soundOn) return null;
-      stopSpeech({keepState:true}); speechStreamOpen=true;
-      return speechToken;
-    }
-    function speechText(text) {
-      return text.replace(/```[\s\S]*?```/g,' code omitted ').replace(/`([^`]+)`/g,'$1').replace(/[*_#>~-]+/g,' ').replace(/\s+/g,' ').trim();
-    }
-    function queueSpeech(text, token) {
-      text=speechText(text); if(!text || token===null || token!==speechToken || !soundOn) return;
-      const controller=new AbortController(); ttsControllers.add(controller);
-      const audio=fetch(`${API}/api/oracle/tts`, {method:'POST', credentials:'include', signal:controller.signal, headers:{'Content-Type':'application/json'}, body:JSON.stringify({text})})
-        .then(r=>{ if(!r.ok) throw new Error('TTS failed'); return r.arrayBuffer(); })
-        .finally(()=>ttsControllers.delete(controller));
-      speechQueue.push({audio,token}); pumpSpeech(token);
-    }
-    async function pumpSpeech(token) {
-      if(speechPumpActive || token!==speechToken || !soundOn) return;
-      speechPumpActive=true; speechPumpToken=token; const ctx=ensureAudioUnlocked();
+    async function speak(text) {
+      if(!soundOn || !text.trim()) return;
+      stopSpeech({keepState:true});
+      const token=speechToken, ctx=ensureAudioUnlocked();
+      ttsController=new AbortController();
       try {
-        while(speechQueue.length && token===speechToken && soundOn) {
-          const item=speechQueue.shift(), encoded=await item.audio;
-          if(item.token!==speechToken || !soundOn) break;
-          const buffer=await ctx.decodeAudioData(encoded.slice(0));
-          if(item.token!==speechToken || !soundOn) break;
-          await new Promise(resolve=>{
-            const source=ctx.createBufferSource(), analyser=ctx.createAnalyser(); analyser.fftSize=256; analyser.smoothingTimeConstant=.58;
-            source.buffer=buffer; source.connect(analyser); analyser.connect(ctx.destination); activeVoice=source; voiceAnalyser=analyser;
-            source.onended=()=>{ activeVoice=null; $('mouth').style.setProperty('--mouth-open','0'); if(mouthFrame) cancelAnimationFrame(mouthFrame); mouthFrame=0; resolve(); };
-            setState('speaking'); animateMouth(analyser,token); source.start(0);
-          });
-        }
-      } catch(err) {
-        if(err.name!=='AbortError' && token===speechToken) showToast('A portion of Malgrin’s voice could not be played. His written answer is still available.');
-      } finally {
-        if(speechPumpToken===token) { speechPumpActive=false; speechPumpToken=null; }
-        if(speechPumpToken===null && speechQueue.length && token===speechToken && soundOn) pumpSpeech(token);
-        else if(!speechStreamOpen && token===speechToken && !activeVoice) setState('idle');
-      }
-    }
-    function finishSpeechStream(token) {
-      if(token===null || token!==speechToken) return;
-      speechStreamOpen=false;
-      if(!speechPumpActive && !speechQueue.length && !activeVoice) setState('idle');
-    }
-    function takeSpeechChunks(buffer, final=false) {
-      const chunks=[]; let cut;
-      while(buffer.length) {
-        const sentence=buffer.match(/^([\s\S]{30,220}?[.!?](?:[\"'”’)]*)\s+)/);
-        if(sentence) cut=sentence[1].length;
-        else if(buffer.length>180) { const space=buffer.lastIndexOf(' ',180); cut=space>80?space:180; }
-        else if(final) cut=buffer.length;
-        else break;
-        chunks.push(buffer.slice(0,cut)); buffer=buffer.slice(cut).trimStart();
-      }
-      return {chunks,buffer};
+        const r=await fetch(`${API}/api/oracle/tts`, {method:'POST', credentials:'include', signal:ttsController.signal, headers:{'Content-Type':'application/json'}, body:JSON.stringify({text:text.trim()})});
+        if(!r.ok) throw new Error('TTS failed');
+        const encoded=await r.arrayBuffer();
+        if(token!==speechToken || !soundOn) return;
+        const buffer=await ctx.decodeAudioData(encoded.slice(0));
+        if(token!==speechToken || !soundOn) return;
+        const source=ctx.createBufferSource(), analyser=ctx.createAnalyser(); analyser.fftSize=256; analyser.smoothingTimeConstant=.58;
+        source.buffer=buffer; source.connect(analyser); analyser.connect(ctx.destination); activeVoice=source; voiceAnalyser=analyser;
+        source.onended=()=>{ if(token!==speechToken) return; activeVoice=null; $('mouth').style.setProperty('--mouth-open','0'); if(mouthFrame) cancelAnimationFrame(mouthFrame); mouthFrame=0; setState('idle'); };
+        setState('speaking'); animateMouth(analyser,token); source.start(0);
+      } catch(err) { if(err.name!=='AbortError' && token===speechToken) { setState('idle'); showToast('Malgrin’s voice could not be played. His written answer is still available.'); } }
+      finally { if(token===speechToken) ttsController=null; }
     }
     async function send(text) {
       text=text.trim(); if(!text || busy) return; ensureAudioUnlocked(); stopSpeech({keepState:true}); if(!conversationId) await awaken(); if(!conversationId) return;
@@ -301,14 +261,13 @@
       try {
         const res=await fetch(`${API}/api/oracle/conversations/${encodeURIComponent(conversationId)}/messages`, {method:'POST', credentials:'include', headers:{'Content-Type':'application/json'}, body:JSON.stringify({content:text})});
         if(!res.ok || !res.body) throw new Error("Malgrin's connection was severed.");
-        const reader=res.body.getReader(), decoder=new TextDecoder(); let answer='', buffer='', speechBuffer=''; const token=beginSpeechStream(); target.textContent='';
+        const reader=res.body.getReader(), decoder=new TextDecoder(); let answer='', buffer=''; target.textContent='';
         while(true) {
           const {done,value}=await reader.read(); if(done) break; buffer += decoder.decode(value,{stream:true}); const lines=buffer.split('\n'); buffer=lines.pop();
-          for(const line of lines) { if(!line.startsWith('data: ')) continue; const raw=line.slice(6); if(raw==='[DONE]') continue; try { const event=JSON.parse(raw); if(event.delta) { answer+=event.delta; speechBuffer+=event.delta; target.textContent=answer; messages.scrollTop=messages.scrollHeight; const ready=takeSpeechChunks(speechBuffer); speechBuffer=ready.buffer; ready.chunks.forEach(chunk=>queueSpeech(chunk,token)); } } catch {} }
+          for(const line of lines) { if(!line.startsWith('data: ')) continue; const raw=line.slice(6); if(raw==='[DONE]') continue; try { const event=JSON.parse(raw); if(event.delta) { answer+=event.delta; target.textContent=answer; messages.scrollTop=messages.scrollHeight; } } catch {} }
         }
-        const finalSpeech=takeSpeechChunks(speechBuffer,true); finalSpeech.chunks.forEach(chunk=>queueSpeech(chunk,token)); finishSpeechStream(token);
-        if(!answer) target.textContent='The Oracle offered only a disapproving silence.'; else if(!soundOn) setState('idle');
-      } catch(err) { stopSpeech({keepState:true}); target.textContent='The ether snapped before the answer arrived. Try that question again.'; setState('offline'); showToast(err.message); }
+        if(!answer) target.textContent='The Oracle offered only a disapproving silence.'; setState('idle'); speak(answer);
+      } catch(err) { target.textContent='The ether snapped before the answer arrived. Try that question again.'; setState('offline'); showToast(err.message); }
       finally { busy=false; sendButton.disabled=false; prompt.focus(); }
     }
     function autoSize(){ prompt.style.height='auto'; prompt.style.height=Math.min(prompt.scrollHeight,150)+'px'; }
