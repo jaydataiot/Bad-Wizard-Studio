@@ -13,6 +13,12 @@
   </url>
 
   <url>
+    <loc>https://badwizard.studio/tabletop-ai-labs.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
     <loc>https://badwizard.studio/Bad-Wizard-Design/index.html</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>

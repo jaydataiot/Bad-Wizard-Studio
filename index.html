@@ -1759,6 +1759,212 @@ box-shadow:0 10px 25px rgba(0,0,0,.35)}
 .news-card h3{margin:.45rem 0 .55rem;color:#f2dfb0}.news-card p{margin:0;color:#cbbca2}
 @media(max-width:850px){.news-grid{grid-template-columns:1fr}}
 
+
+/* =========================================================
+   TABLETOP AI LABS — PROFESSIONAL CONTROL ROOM SHOWCASE
+========================================================= */
+.tabletop-ai-section{
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg,rgba(7,5,4,.92),rgba(10,13,18,.96) 42%,rgba(12,8,5,.98)),
+    url("assets/banner.jpeg") center/cover fixed;
+}
+.tabletop-ai-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.58;
+  background:
+    radial-gradient(circle at 19% 16%,rgba(114,215,255,.20),transparent 18rem),
+    radial-gradient(circle at 82% 30%,rgba(217,177,90,.18),transparent 20rem),
+    linear-gradient(rgba(10,12,16,.74),rgba(10,7,5,.96));
+}
+.tabletop-ai-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.22;
+  background-image:
+    linear-gradient(rgba(114,215,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(217,177,90,.07) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:linear-gradient(90deg,transparent,black 14%,black 86%,transparent);
+}
+.ai-lab-hero,.ai-command-grid,.ai-lab-note{position:relative;z-index:1}
+.ai-lab-hero{
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  gap:1.4rem;
+  align-items:stretch;
+  margin-bottom:1.4rem;
+}
+.ai-briefing{
+  padding:clamp(1.5rem,4vw,2.4rem);
+  border:1px solid rgba(217,177,90,.28);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(12,10,11,.93),rgba(40,25,15,.88));
+  box-shadow:var(--shadow),inset 0 0 0 1px rgba(255,255,255,.035);
+}
+.ai-briefing h2{
+  margin:.35rem 0 .8rem;
+  color:#f4ddb1;
+  font-size:clamp(2.55rem,5.8vw,5.4rem);
+  line-height:.9;
+  letter-spacing:-.055em;
+}
+.ai-briefing p{max-width:68ch;color:#cfbea2}
+.ai-tool-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.15rem}
+.ai-console{
+  position:relative;
+  min-height:430px;
+  overflow:hidden;
+  border:1px solid rgba(114,215,255,.22);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 50% 32%,rgba(114,215,255,.14),transparent 16rem),
+    linear-gradient(145deg,rgba(8,13,18,.96),rgba(7,7,9,.98));
+  box-shadow:0 26px 80px rgba(0,0,0,.55),inset 0 0 60px rgba(114,215,255,.045);
+}
+.ai-console::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(114,215,255,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(114,215,255,.045) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+.ai-console-top{
+  position:relative;
+  z-index:2;
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  padding:.85rem 1rem;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  color:#a9d9ef;
+  font:800 .68rem Arial,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.ai-orbit{
+  position:absolute;
+  left:50%;
+  top:52%;
+  width:min(330px,72%);
+  aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(114,215,255,.22);
+  border-radius:50%;
+  box-shadow:0 0 70px rgba(114,215,255,.08);
+}
+.ai-orbit::before,.ai-orbit::after{
+  content:"";
+  position:absolute;
+  inset:14%;
+  border:1px dashed rgba(217,177,90,.26);
+  border-radius:50%;
+}
+.ai-orbit::after{inset:31%;border-style:solid;border-color:rgba(114,215,255,.20)}
+.ai-core{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:104px;
+  height:104px;
+  display:grid;
+  place-items:center;
+  transform:translate(-50%,-50%) rotate(45deg);
+  border-radius:24px;
+  background:linear-gradient(135deg,#4f3a8a,#b78d48);
+  box-shadow:0 0 44px rgba(217,177,90,.22),0 0 80px rgba(114,215,255,.1);
+}
+.ai-core span{transform:rotate(-45deg);font:900 1.3rem Arial,sans-serif;color:white}
+.ai-node{
+  position:absolute;
+  z-index:2;
+  min-width:122px;
+  padding:.7rem .8rem;
+  border:1px solid rgba(114,215,255,.22);
+  border-radius:12px;
+  background:rgba(8,14,18,.84);
+  box-shadow:0 12px 24px rgba(0,0,0,.34);
+  color:#e9dcc1;
+  font:800 .7rem Arial,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.ai-node small{display:block;margin-top:.15rem;color:#83cce8;font-weight:700;text-transform:none;letter-spacing:0}
+.ai-node.n1{left:7%;top:19%}.ai-node.n2{right:8%;top:23%}.ai-node.n3{left:9%;bottom:16%}.ai-node.n4{right:10%;bottom:15%}
+.ai-command-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.1rem;
+}
+.ai-tool-card{
+  overflow:hidden;
+  border:1px solid rgba(230,199,137,.22);
+  border-radius:18px;
+  background:linear-gradient(155deg,rgba(13,11,10,.96),rgba(37,25,18,.92));
+  box-shadow:0 18px 52px rgba(0,0,0,.42);
+}
+.ai-tool-visual{
+  min-height:190px;
+  padding:1rem;
+  border-bottom:1px solid rgba(230,199,137,.13);
+  background:
+    radial-gradient(circle at 18% 24%,rgba(114,215,255,.16),transparent 12rem),
+    radial-gradient(circle at 80% 30%,rgba(217,177,90,.13),transparent 12rem),
+    rgba(8,10,13,.74);
+}
+.lab-map{display:grid;grid-template-columns:repeat(5,1fr);gap:.45rem;max-width:360px;margin:auto}
+.lab-hex{
+  aspect-ratio:1.08;
+  display:grid;
+  place-items:center;
+  clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0 50%);
+  background:linear-gradient(145deg,rgba(114,215,255,.16),rgba(217,177,90,.12));
+  border:1px solid rgba(255,255,255,.12);
+  color:#e8d6a8;
+  font:900 .68rem Arial,sans-serif;
+}
+.lab-hex.hot{background:linear-gradient(145deg,#8b2f2a,#b66a2d);color:#fff2cf;box-shadow:0 0 22px rgba(179,71,29,.38)}
+.market-radar{position:relative;min-height:165px;max-width:360px;margin:auto;border:1px solid rgba(114,215,255,.16);border-radius:16px;background:radial-gradient(circle at 50% 50%,rgba(114,215,255,.13),transparent 62%)}
+.market-radar::before{content:"";position:absolute;inset:10%;border:1px dashed rgba(217,177,90,.22);border-radius:50%}
+.market-radar::after{content:"";position:absolute;left:50%;top:50%;width:42%;height:2px;background:linear-gradient(90deg,#72d7ff,transparent);transform-origin:left center;transform:rotate(-26deg)}
+.market-dot{position:absolute;width:11px;height:11px;border-radius:50%;background:#d9b15a;box-shadow:0 0 18px rgba(217,177,90,.6)}
+.market-dot.d1{left:18%;top:34%}.market-dot.d2{left:62%;top:26%}.market-dot.d3{left:71%;top:65%}.market-dot.d4{left:34%;top:70%}
+.ai-tool-copy{padding:1.4rem}
+.ai-tool-number{color:#d9b15a;font:800 .72rem Arial,sans-serif;letter-spacing:.17em;text-transform:uppercase}
+.ai-tool-card h3{margin:.5rem 0 .55rem;color:#f3dfb4;font-size:clamp(1.7rem,3vw,2.25rem);line-height:1}
+.ai-tool-card p{color:#c7b8a0}
+.ai-feature-list{display:grid;gap:.5rem;margin:1rem 0 1.2rem;padding:0;list-style:none}
+.ai-feature-list li{display:flex;gap:.65rem;color:#d6c8ae;font-size:.92rem}
+.ai-feature-list li::before{content:"";width:.48rem;height:.48rem;margin-top:.55rem;border-radius:50%;background:#72d7ff;box-shadow:0 0 12px rgba(114,215,255,.65);flex:0 0 auto}
+.ai-lab-note{
+  margin-top:1.1rem;
+  padding:1rem 1.1rem;
+  border:1px solid rgba(217,177,90,.24);
+  border-left:4px solid #d9b15a;
+  border-radius:10px;
+  background:rgba(10,7,5,.72);
+  color:#c8baa5;
+}
+.ai-lab-note strong{color:#f1deb7}
+@media(max-width:900px){
+  .ai-lab-hero,.ai-command-grid{grid-template-columns:1fr}
+  .ai-console{min-height:360px}
+}
+@media(max-width:560px){
+  .ai-node{min-width:auto;font-size:.58rem;padding:.55rem}
+  .ai-core{width:78px;height:78px;border-radius:18px}
+  .ai-core span{font-size:1rem}
+  .lab-map{grid-template-columns:repeat(4,1fr)}
+}
+
 </style>
 </head>
 <body>
@@ -1776,6 +1982,7 @@ box-shadow:0 10px 25px rgba(0,0,0,.35)}
         <a href="#branches">Our Worlds</a>
         <a href="#process">How We Create</a>
         <a href="#projects">On the Bench</a>
+        <a href="#tabletop-ai">AI Labs</a>
         <a href="#audio">Audio</a>
         <a href="malgrins-story.html">Malgrin's Story</a>
         <a href="#contact">Contact</a>
@@ -1911,8 +2118,72 @@ box-shadow:0 10px 25px rgba(0,0,0,.35)}
       </div>
     </section>
 
-    
+    <section class="section tabletop-ai-section" id="tabletop-ai" aria-labelledby="tabletop-ai-title">
+      <div class="container">
+        <div class="ai-lab-hero reveal">
+          <div class="ai-briefing">
+            <span class="eyebrow">New from the Workshop · Tabletop AI Labs</span>
+            <h2 id="tabletop-ai-title">A command center for board game prototypes.</h2>
+            <p>Bring a rulebook into the lab and watch it become evidence: simulated playtest pressure, pacing signals, balance warnings, comparable-title mapping, and market clues for the next creative decision. It is built for designers who want sharper questions before the next expensive print, pitch, or playtest.</p>
+            <div class="ai-tool-actions">
+              <a class="btn btn-primary" href="tabletop-ai-labs.html">Enter Tabletop AI Labs →</a>
+              <a class="btn btn-secondary" href="https://board-game-tester-ai.jay-data-iot.workers.dev/" target="_blank" rel="noopener noreferrer">Launch Playtest Intelligence ↗</a>
+              <a class="btn btn-secondary" href="https://board-game-market-analyzer.jay-data-iot.workers.dev/" target="_blank" rel="noopener noreferrer">Launch Market Hex ↗</a>
+            </div>
+          </div>
+          <div class="ai-console" aria-hidden="true">
+            <div class="ai-console-top"><span>Prototype telemetry</span><span>Live lab view</span></div>
+            <div class="ai-orbit"><div class="ai-core"><span>AI × ⚄</span></div></div>
+            <div class="ai-node n1">Rules parsed<small>47 mechanics</small></div>
+            <div class="ai-node n2">Balance scan<small>3 alerts</small></div>
+            <div class="ai-node n3">Market fit<small>12 comps</small></div>
+            <div class="ai-node n4">Next test<small>Human table</small></div>
+          </div>
+        </div>
 
+        <div class="ai-command-grid">
+          <article class="ai-tool-card reveal">
+            <div class="ai-tool-visual" aria-hidden="true">
+              <div class="lab-map">
+                <span class="lab-hex hot">START</span><span class="lab-hex">TURN</span><span class="lab-hex">RISK</span><span class="lab-hex hot">STALL</span><span class="lab-hex">WIN</span>
+                <span class="lab-hex">ROLE</span><span class="lab-hex hot">LOOP</span><span class="lab-hex">PACE</span><span class="lab-hex">SCORE</span><span class="lab-hex">END</span>
+              </div>
+            </div>
+            <div class="ai-tool-copy">
+              <div class="ai-tool-number">Tool 01 · AI Playtest Intelligence</div>
+              <h3>Tabletop Lab</h3>
+              <p>Upload a rulebook, configure virtual tester behavior, and surface where the game might stall, snowball, confuse players, or collapse into a dominant strategy.</p>
+              <ul class="ai-feature-list">
+                <li>Runs repeatable simulated playtest experiments with adjustable agents, turns, player counts, strategy mix, and seed.</li>
+                <li>Tracks completion, pacing, balance, ambiguity, scoring spread, replayability, interaction, and strategy pressure.</li>
+                <li>Returns designer-friendly findings that can guide the next physical playtest instead of replacing it.</li>
+              </ul>
+              <div class="ai-tool-actions"><a class="btn btn-primary" href="https://board-game-tester-ai.jay-data-iot.workers.dev/" target="_blank" rel="noopener noreferrer">Run a playtest ↗</a><a class="btn btn-secondary" href="tabletop-ai-labs.html#playtest">Tour the interface</a></div>
+            </div>
+          </article>
+
+          <article class="ai-tool-card reveal">
+            <div class="ai-tool-visual" aria-hidden="true">
+              <div class="market-radar">
+                <i class="market-dot d1"></i><i class="market-dot d2"></i><i class="market-dot d3"></i><i class="market-dot d4"></i>
+              </div>
+            </div>
+            <div class="ai-tool-copy">
+              <div class="ai-tool-number">Tool 02 · Board Game Market Intelligence</div>
+              <h3>Market Hex</h3>
+              <p>Convert a rulebook into a market profile, map comparable titles, and separate what the market evidence actually says from what still needs human validation.</p>
+              <ul class="ai-feature-list">
+                <li>Scores comparable games across mechanics, genre, theme, player count, play time, audience, and product shape.</li>
+                <li>Uses live marketplace signals where available for active supply and asking-price evidence.</li>
+                <li>Labels confidence, source coverage, freshness, and missing demand data so the report stays honest.</li>
+              </ul>
+              <div class="ai-tool-actions"><a class="btn btn-primary" href="https://board-game-market-analyzer.jay-data-iot.workers.dev/" target="_blank" rel="noopener noreferrer">Analyze the market ↗</a><a class="btn btn-secondary" href="tabletop-ai-labs.html#market">Tour the interface</a></div>
+            </div>
+          </article>
+        </div>
+        <div class="ai-lab-note reveal"><strong>Designed as decision support, not a replacement for the table.</strong> The lab helps identify sharper questions earlier. Final judgment still belongs to human playtesters, accessibility review, production realities, publisher feedback, and real customer behavior.</div>
+      </div>
+    </section>
 
     <section class="workshop-audio" id="audio" aria-labelledby="audio-title">
       <div class="container">

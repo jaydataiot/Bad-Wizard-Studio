@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bad Wizard Studio Tabletop AI Labs: professional AI-assisted playtest intelligence and board game market analysis for tabletop designers.">
+<meta name="theme-color" content="#090b10">
+<title>Tabletop AI Labs | Bad Wizard Studio</title>
+<link rel="icon" href="assets/logo_switched.png">
+<style>
+:root{
+  --bg:#070809;
+  --panel:#10141a;
+  --panel-2:#17100c;
+  --ink:#f4e7ca;
+  --muted:#bdaf98;
+  --gold:#d9b15a;
+  --brass:#b78d48;
+  --ember:#b3471d;
+  --purple:#5b43a4;
+  --cyan:#72d7ff;
+  --green:#9fd28b;
+  --line:rgba(230,199,137,.2);
+  --blue-line:rgba(114,215,255,.22);
+  --shadow:0 26px 80px rgba(0,0,0,.56);
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  line-height:1.62;
+  background:
+    radial-gradient(circle at 10% 4%,rgba(91,67,164,.22),transparent 27rem),
+    radial-gradient(circle at 88% 16%,rgba(217,177,90,.15),transparent 28rem),
+    linear-gradient(#070809,#10141a 40%,#090604);
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:90;
+  pointer-events:none;
+  opacity:.12;
+  background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);
+  background-size:8px 8px;
+  mix-blend-mode:soft-light;
+}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+.wrap{width:min(var(--max),calc(100% - 2rem));margin:auto}
+.eyebrow{display:inline-flex;gap:.55rem;align-items:center;color:var(--gold);font:900 .72rem Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.eyebrow::before{content:"✦";color:var(--cyan)}
+.muted{color:var(--muted)}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.55rem;
+  min-height:46px;
+  padding:.75rem 1rem;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:#f2e0bc;
+  background:rgba(255,255,255,.04);
+  font:900 .78rem Arial,sans-serif;
+  letter-spacing:.04em;
+  transition:.2s ease;
+}
+.btn:hover{transform:translateY(-2px);border-color:rgba(217,177,90,.55);box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.primary{border:0;color:white;background:linear-gradient(135deg,var(--purple),var(--brass));box-shadow:0 16px 34px rgba(0,0,0,.34)}
+.ghost{border-color:var(--blue-line)}
+header{
+  position:sticky;
+  top:0;
+  z-index:80;
+  border-bottom:1px solid var(--line);
+  background:rgba(7,8,9,.82);
+  backdrop-filter:blur(15px) saturate(128%);
+}
+.nav{min-height:74px;display:flex;align-items:center;gap:1rem}
+.brand{display:flex;align-items:center;gap:.75rem;min-width:max-content}
+.brand img{width:43px;height:43px;object-fit:contain;border:1px solid rgba(217,177,90,.25);border-radius:10px}
+.brand strong{display:block;font:900 .9rem Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase}
+.brand small{display:block;color:#a99b84;font-size:.72rem}
+.navlinks{margin-left:auto;display:flex;gap:.25rem;flex-wrap:wrap}
+.navlinks a{padding:.62rem .76rem;border-radius:999px;color:#d8ccb7;font-size:.86rem}
+.navlinks a:hover{background:rgba(255,255,255,.06)}
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:calc(100svh - 74px);
+  display:grid;
+  align-items:center;
+  isolation:isolate;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  background:url("assets/banner.jpeg") center/cover no-repeat;
+  opacity:.38;
+  filter:saturate(.85) contrast(1.1);
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 73% 46%,rgba(114,215,255,.15),transparent 20rem),
+    radial-gradient(circle at 26% 30%,rgba(217,177,90,.16),transparent 19rem),
+    linear-gradient(90deg,rgba(7,8,9,.96),rgba(7,8,9,.68) 46%,rgba(7,8,9,.93));
+}
+.hero-grid{display:grid;grid-template-columns:1fr .92fr;gap:2rem;align-items:center;padding:5rem 0}
+.hero-copy h1{margin:.45rem 0 1rem;font-size:clamp(3.3rem,8vw,7.8rem);line-height:.84;letter-spacing:-.065em;color:#f6dfb0;text-shadow:0 18px 50px rgba(0,0,0,.62)}
+.hero-copy h1 span{color:var(--cyan)}
+.hero-copy p{max-width:68ch;color:#d5c6ad;font-size:1.06rem}
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.3rem}
+.lab-shell{
+  position:relative;
+  min-height:530px;
+  border:1px solid var(--blue-line);
+  border-radius:22px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 34%,rgba(114,215,255,.12),transparent 15rem),
+    linear-gradient(145deg,rgba(11,18,24,.96),rgba(9,8,8,.98));
+  box-shadow:var(--shadow),inset 0 0 80px rgba(114,215,255,.04);
+}
+.lab-bar{display:flex;justify-content:space-between;gap:1rem;padding:.85rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);color:#a6d5e7;font:900 .68rem Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase}
+.lab-viewport{position:relative;min-height:465px;background-image:linear-gradient(rgba(114,215,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(114,215,255,.045) 1px,transparent 1px);background-size:28px 28px}
+.scan-ring{position:absolute;left:46%;top:45%;width:min(300px,58%);aspect-ratio:1;transform:translate(-50%,-50%);border:1px solid rgba(114,215,255,.24);border-radius:50%;box-shadow:0 0 70px rgba(114,215,255,.08)}
+.scan-ring::before,.scan-ring::after{content:"";position:absolute;inset:15%;border:1px dashed rgba(217,177,90,.26);border-radius:50%}
+.scan-ring::after{inset:34%;border-style:solid;border-color:rgba(114,215,255,.22)}
+.scan-core{position:absolute;left:50%;top:50%;width:96px;height:96px;display:grid;place-items:center;transform:translate(-50%,-50%) rotate(45deg);border-radius:22px;background:linear-gradient(135deg,var(--purple),var(--brass));box-shadow:0 0 54px rgba(217,177,90,.23)}
+.scan-core b{transform:rotate(-45deg);font:900 1.2rem Arial,sans-serif}
+.metric-card{position:absolute;z-index:2;width:160px;padding:.85rem;border:1px solid rgba(114,215,255,.22);border-radius:12px;background:rgba(8,13,18,.86);box-shadow:0 16px 30px rgba(0,0,0,.34)}
+.metric-card b{display:block;color:#f3dfb4}.metric-card span{color:#9fd7ed;font:800 .75rem Arial,sans-serif}
+.m1{left:6%;top:12%}.m2{right:7%;top:14%}.m3{left:8%;bottom:14%}.m4{right:12%;bottom:18%}
+section{padding:5.5rem 0;border-top:1px solid rgba(230,199,137,.09)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:2rem}
+.section-head h2{margin:.35rem 0 0;font-size:clamp(2.4rem,5vw,4.8rem);line-height:.92;color:#f1d9aa;letter-spacing:-.04em}
+.section-head p{max-width:58ch;margin:0;color:var(--muted)}
+.tool-station{display:grid;grid-template-columns:.92fr 1.08fr;gap:1.2rem;align-items:stretch;margin-bottom:1.4rem}
+.tool-station.market{grid-template-columns:1.08fr .92fr}
+.station-panel,.display-panel,.insight-card,.workflow-card,.final-cta{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(16,20,26,.94),rgba(29,18,12,.9));
+  box-shadow:0 18px 52px rgba(0,0,0,.36);
+}
+.station-panel{padding:1.4rem}
+.station-panel h3{margin:.4rem 0 .65rem;color:#f3dfb4;font-size:clamp(2rem,4vw,3.1rem);line-height:.95}
+.station-panel p{color:#c9baa2}
+.control-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin:1rem 0}
+.control{padding:.9rem;border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(255,255,255,.035)}
+.control label{display:flex;justify-content:space-between;gap:1rem;color:#e9d6ad;font:900 .72rem Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.control input{width:100%;accent-color:var(--cyan);margin-top:.65rem}
+.file-drop{margin-top:1rem;padding:1.05rem;border:1px dashed rgba(114,215,255,.35);border-radius:14px;background:rgba(114,215,255,.045);color:#c7e7f3}
+.display-panel{overflow:hidden;background:linear-gradient(145deg,rgba(8,12,16,.97),rgba(8,8,9,.98));border-color:var(--blue-line)}
+.display-head{display:flex;justify-content:space-between;gap:1rem;padding:.85rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);color:#a8d7e9;font:900 .68rem Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase}
+.display-body{padding:1rem}
+.map-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.45rem;margin-bottom:1rem}
+.hex{aspect-ratio:1.05;display:grid;place-items:center;clip-path:polygon(25% 6%,75% 6%,100% 50%,75% 94%,25% 94%,0 50%);background:linear-gradient(145deg,rgba(114,215,255,.14),rgba(217,177,90,.11));color:#e8d6a8;font:900 .62rem Arial,sans-serif}
+.hex.hot{background:linear-gradient(145deg,#8b2f2a,#b66a2d);box-shadow:0 0 22px rgba(179,71,29,.35);color:white}
+.signal-list{display:grid;gap:.55rem}
+.signal{display:grid;grid-template-columns:120px 1fr 54px;gap:.75rem;align-items:center;padding:.65rem;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:rgba(255,255,255,.035);font:800 .72rem Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em}
+.bar{height:8px;border-radius:999px;background:rgba(255,255,255,.09);overflow:hidden}.bar i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,var(--cyan),var(--gold))}
+.radar{position:relative;min-height:320px;border:1px solid rgba(114,215,255,.16);border-radius:16px;background:radial-gradient(circle at 50% 50%,rgba(114,215,255,.12),transparent 62%),rgba(255,255,255,.02)}
+.radar::before{content:"";position:absolute;inset:12%;border:1px dashed rgba(217,177,90,.24);border-radius:50%}
+.radar::after{content:"";position:absolute;left:50%;top:50%;width:42%;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);transform-origin:left center;transform:rotate(-31deg)}
+.comp{position:absolute;display:grid;place-items:center;width:76px;height:76px;border-radius:50%;background:rgba(7,11,15,.86);border:1px solid rgba(114,215,255,.25);box-shadow:0 0 30px rgba(114,215,255,.08);font:900 .68rem Arial,sans-serif;text-align:center}
+.c1{left:17%;top:20%}.c2{right:17%;top:22%}.c3{left:24%;bottom:19%}.c4{right:22%;bottom:18%}.c5{left:48%;top:44%;background:linear-gradient(135deg,var(--purple),var(--brass));color:white}
+.insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.insight-card{padding:1.15rem}
+.insight-card b{color:var(--gold);font:900 .72rem Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.insight-card h3{margin:.35rem 0 .4rem;color:#f2dfb0}
+.insight-card p{margin:0;color:#c6b79f}
+.workflow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.workflow-card{padding:1.1rem;min-height:210px}
+.workflow-card strong{color:var(--cyan);font:900 .74rem Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.workflow-card h3{color:#f0d7a6}
+.final-cta{padding:2rem;background:radial-gradient(circle at 85% 20%,rgba(114,215,255,.18),transparent 18rem),linear-gradient(135deg,rgba(25,18,12,.96),rgba(12,13,18,.96))}
+footer{padding:2.5rem 0;border-top:1px solid var(--line);color:#9f927f}
+@media(max-width:900px){
+  .navlinks a:not(.keep){display:none}
+  .hero-grid,.tool-station,.tool-station.market,.insight-grid,.workflow{grid-template-columns:1fr}
+  .hero{min-height:auto}
+  .lab-shell{min-height:430px}
+  .control-grid{grid-template-columns:1fr}
+  .section-head{align-items:start;flex-direction:column}
+}
+@media(max-width:560px){
+  .hero-grid{padding:3.6rem 0}
+  .hero-copy h1{font-size:clamp(3rem,17vw,4.7rem)}
+  .brand small{display:none}
+  .metric-card{width:126px;font-size:.8rem}
+  .map-grid{grid-template-columns:repeat(4,1fr)}
+  .signal{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Return to Bad Wizard Studio">
+      <img src="assets/logo_switched.png" alt="Bad Wizard Studio logo">
+      <span><strong>Bad Wizard Studio</strong><small>Tabletop AI Labs</small></span>
+    </a>
+    <nav class="navlinks" aria-label="Lab navigation">
+      <a href="#playtest">Playtest</a>
+      <a href="#market">Market Hex</a>
+      <a href="#workflow">Workflow</a>
+      <a class="keep" href="index.html">Workshop</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Bad Wizard Studio · Experimental design intelligence</span>
+        <h1>Prototype faster.<br><span>Question smarter.</span></h1>
+        <p>Tabletop AI Labs is a two-part command center for board game creators: one station pressure-tests rules through AI-assisted simulation, the other maps the game against comparable titles and marketplace evidence. It gives designers a sharper briefing before the next table, pitch, convention, or print decision.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://board-game-tester-ai.jay-data-iot.workers.dev/" target="_blank" rel="noopener noreferrer">Launch Playtest Intelligence ↗</a>
+          <a class="btn ghost" href="https://board-game-market-analyzer.jay-data-iot.workers.dev/" target="_blank" rel="noopener noreferrer">Launch Market Hex ↗</a>
+        </div>
+      </div>
+      <div class="lab-shell" aria-label="Tabletop AI Labs visual dashboard">
+        <div class="lab-bar"><span>Lab operating system</span><span>Prototype scan</span></div>
+        <div class="lab-viewport">
+          <div class="scan-ring"><div class="scan-core"><b>AI × ⚄</b></div></div>
+          <div class="metric-card m1"><b>Rules Parsed</b><span>Mechanics, turns, states</span></div>
+          <div class="metric-card m2"><b>Simulation Queue</b><span>Agent behaviors loaded</span></div>
+          <div class="metric-card m3"><b>Market Radar</b><span>Comparable titles mapped</span></div>
+          <div class="metric-card m4"><b>Next Action</b><span>Human table test</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="playtest">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">Station 01 · Rulebook simulation</span><h2>AI Playtest Intelligence</h2></div>
+        <p>Use this when your rules are readable enough to test, but early enough that catching structural problems still saves time, money, and emotional damage.</p>
+      </div>
+      <div class="tool-station">
+        <div class="station-panel">
+          <span class="eyebrow">Input console</span>
+          <h3>Turn a rulebook into a testable system.</h3>
+          <p>Upload a PDF or TXT rulebook, choose an experiment profile, and let AI tester agents probe the design for flow, ambiguity, pacing, runaway strategies, and end-condition problems.</p>
+          <div class="control-grid">
+            <div class="control"><label>Simulated games <span id="gamesValue">24</span></label><input id="gamesRange" type="range" min="6" max="60" value="24"></div>
+            <div class="control"><label>Agent styles <span>4</span></label><input type="range" min="1" max="6" value="4"></div>
+            <div class="control"><label>Player count <span>3-5</span></label><input type="range" min="1" max="6" value="4"></div>
+            <div class="control"><label>Turn ceiling <span>90</span></label><input type="range" min="20" max="160" value="90"></div>
+          </div>
+          <div class="file-drop">Drop rulebook here · PDF or TXT · then run a controlled simulation pass.</div>
+          <div class="hero-actions"><a class="btn primary" href="https://board-game-tester-ai.jay-data-iot.workers.dev/" target="_blank" rel="noopener noreferrer">Open Playtest Tool ↗</a></div>
+        </div>
+        <div class="display-panel">
+          <div class="display-head"><span>Simulation readout</span><span>Sample interface</span></div>
+          <div class="display-body">
+            <div class="map-grid" aria-hidden="true">
+              <span class="hex hot">OPEN</span><span class="hex">DRAW</span><span class="hex">MOVE</span><span class="hex">TRADE</span><span class="hex hot">STALL</span><span class="hex">SCORE</span>
+              <span class="hex">ROLE</span><span class="hex hot">LOOP</span><span class="hex">RISK</span><span class="hex">PACT</span><span class="hex">EVENT</span><span class="hex hot">END?</span>
+            </div>
+            <div class="signal-list">
+              <div class="signal"><span>Pacing</span><span class="bar"><i style="--w:72%"></i></span><span>72</span></div>
+              <div class="signal"><span>Clarity</span><span class="bar"><i style="--w:61%"></i></span><span>61</span></div>
+              <div class="signal"><span>Interaction</span><span class="bar"><i style="--w:84%"></i></span><span>84</span></div>
+              <div class="signal"><span>Balance risk</span><span class="bar"><i style="--w:46%"></i></span><span>46</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="market">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">Station 02 · Positioning intelligence</span><h2>Market Hex</h2></div>
+        <p>Use this when you need to understand what your game resembles, where it may sit, and what current marketplace signals can and cannot prove.</p>
+      </div>
+      <div class="tool-station market">
+        <div class="display-panel">
+          <div class="display-head"><span>Comparable-title radar</span><span>Similarity model</span></div>
+          <div class="display-body">
+            <div class="radar" aria-hidden="true">
+              <div class="comp c1">Theme<br>Match</div>
+              <div class="comp c2">Mechanic<br>Neighbor</div>
+              <div class="comp c3">Audience<br>Overlap</div>
+              <div class="comp c4">Price<br>Band</div>
+              <div class="comp c5">Your<br>Game</div>
+            </div>
+          </div>
+        </div>
+        <div class="station-panel">
+          <span class="eyebrow">Market console</span>
+          <h3>Find the shelf your prototype is arguing with.</h3>
+          <p>Market Hex extracts product characteristics from the rulebook, scores comparable games, checks available marketplace supply, and labels confidence instead of inventing demand certainty.</p>
+          <div class="control-grid">
+            <div class="control"><label>Similarity threshold <span>72%</span></label><input type="range" min="40" max="95" value="72"></div>
+            <div class="control"><label>Candidate pool <span>40</span></label><input type="range" min="10" max="80" value="40"></div>
+            <div class="control"><label>Freshness window <span>30d</span></label><input type="range" min="7" max="90" value="30"></div>
+            <div class="control"><label>Evidence strictness <span>High</span></label><input type="range" min="1" max="5" value="4"></div>
+          </div>
+          <div class="file-drop">Reports separate active supply, asking price, source coverage, freshness, and unavailable sold data.</div>
+          <div class="hero-actions"><a class="btn primary" href="https://board-game-market-analyzer.jay-data-iot.workers.dev/" target="_blank" rel="noopener noreferrer">Open Market Tool ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">What users come for</span><h2>Outputs that invite action.</h2></div>
+        <p>The labs are designed to leave creators with next steps, not just a pretty report.</p>
+      </div>
+      <div class="insight-grid">
+        <article class="insight-card"><b>Design alerts</b><h3>Know what to test next.</h3><p>Ambiguous timing, stall loops, runaway advantages, unclear scoring, and pacing trouble are translated into playtest questions.</p></article>
+        <article class="insight-card"><b>Comparable map</b><h3>Understand the neighborhood.</h3><p>Market Hex shows why games are comparable, which dimensions match, and where your concept may diverge.</p></article>
+        <article class="insight-card"><b>Confidence labels</b><h3>Keep the evidence honest.</h3><p>Reports call out sample size, freshness, source limits, and missing data so creators can decide what still needs validation.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="workflow">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="eyebrow">Recommended loop</span><h2>From draft to sharper table test.</h2></div>
+        <p>AI Labs works best as an early intelligence layer before the real human work begins.</p>
+      </div>
+      <div class="workflow">
+        <article class="workflow-card"><strong>01 · Draft</strong><h3>Prepare rules</h3><p>Write enough structure for goals, turns, actions, conflicts, scoring, and end states to be understood.</p></article>
+        <article class="workflow-card"><strong>02 · Simulate</strong><h3>Probe the system</h3><p>Run agent tests to identify risky questions and revision targets before gathering a human group.</p></article>
+        <article class="workflow-card"><strong>03 · Position</strong><h3>Map the market</h3><p>Compare the concept against similar games and current marketplace evidence without treating estimates as prophecy.</p></article>
+        <article class="workflow-card"><strong>04 · Validate</strong><h3>Return to people</h3><p>Prototype physically, test accessibility, observe real players, revise, and repeat until the game earns its table time.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="final-cta">
+        <span class="eyebrow">Open the lab</span>
+        <h2 style="margin:.35rem 0;font-size:clamp(2.4rem,5vw,4.6rem);line-height:.94;color:#f1d9aa">Bring the rulebook. Leave with better questions.</h2>
+        <p class="muted">The tools do not replace human playtesting, publisher judgment, accessibility review, or customer research. They help creators arrive at those conversations better prepared.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://board-game-tester-ai.jay-data-iot.workers.dev/" target="_blank" rel="noopener noreferrer">AI Playtest Intelligence ↗</a>
+          <a class="btn ghost" href="https://board-game-market-analyzer.jay-data-iot.workers.dev/" target="_blank" rel="noopener noreferrer">Board Game Market Analyzer ↗</a>
+          <a class="btn" href="index.html">Back to the Workshop</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <strong>Bad Wizard Studio · Tabletop AI Labs</strong>
+    <div class="muted">AI-assisted design intelligence for tabletop creators. Human testing remains essential.</div>
+  </div>
+</footer>
+
+<script>
+  const gamesRange = document.getElementById('gamesRange');
+  const gamesValue = document.getElementById('gamesValue');
+  gamesRange?.addEventListener('input', () => {
+    gamesValue.textContent = gamesRange.value;
+  });
+</script>
+</body>
+</html>
